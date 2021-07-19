@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p> <!--podría ser ujs-->
+
+<%= render 'shared/navbar' %>
+
+<h1>Trainings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Sport</th>
+      <th>Level</th>
+      <!--<th>Active</th>-->
+      <th>User</th>
+      <th>Place</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trainings.each do |training| %>
+      <tr>
+        <td><%= training.name %></td>
+        <td><%= training.date %></td>
+        <td><%= training.sport %></td>
+        <td><%= training.level %></td>
+        <!--<td><%= training.active %></td>-->
+        <td><%= training.user.name %></td>
+        <td><%= training.place.location %></td>
+        <td><%= link_to 'Show', training %></td>
+        <td><%= link_to 'Edit', edit_training_path(training) %></td>
+        <td><%= link_to 'Destroy', training, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Training', new_training_path %>
+
+<%= render 'shared/footer' %>

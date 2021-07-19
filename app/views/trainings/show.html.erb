@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @training.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @training.date %>
+</p>
+
+<p>
+  <strong>Sport:</strong>
+  <%= @training.sport %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @training.level %>
+</p>
+
+<!--<p>
+  <strong>Active:</strong>
+  <%= @training.active %>
+</p>-->
+
+<p>
+  <strong>User:</strong>
+  <%= @training.user.name %>
+</p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @training.place.location%>
+</p>
+
+<%= link_to 'Edit', edit_training_path(@training) %> |
+<%= link_to 'Back', trainings_path %>
