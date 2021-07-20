@@ -23,27 +23,22 @@
 
   <div class="field">
     <%= form.label :sport %>
-    <%= form.number_field :sport %>
+    <%= form.select :sport, @sports, prompt: "Seleccione una opción" %>
   </div>
 
   <div class="field">
     <%= form.label :level %>
-    <%= form.number_field :level %>
-  </div>
-
-  <div class="field">
-    <%= form.label :active %>
-    <%= form.check_box :active %>
+    <%= form.select :level, @levels, prompt: "Seleccione una opción" %>
   </div>
 
   <%# <div class="field">
-    <%= form.label :user_id %>
-    <%# <%= form.text_field :user_id %> 
-  <%# </div> %> 
+    <%= form.label :place %>
+    <%# <%= form.text_field :place %>
+  <%# </div> %>
 
   <div class="field">
     <%= form.label :place_id %>
-    <%= form.text_field :place_id %>
+    <%= form.select :place_id, @places, prompt: "Seleccione una opción" %>
   </div>
 
   <div class="actions">

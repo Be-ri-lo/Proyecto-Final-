@@ -1,6 +1,7 @@
 class TrainingsController < ApplicationController
   before_action :set_training, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :set_sports, :set_levels, :set_places, only: %i[new edit]  
   
   # GET /trainings or /trainings.json
   def index
@@ -10,11 +11,13 @@ class TrainingsController < ApplicationController
 
   # GET /trainings/1 or /trainings/1.json
   def show
+    @training = Training.find(params[:id])
   end
 
   # GET /trainings/new
   def new
     @training = current_user.trainings.build
+    
   end
 
   # GET /trainings/1/edit
@@ -68,6 +71,18 @@ class TrainingsController < ApplicationController
     #   @training = Training.find(params[:training_id])
       
     # end
+
+    def set_sports
+      @sports = Training.sports.map { |sport, id| [sport, sport] }
+    end
+
+    def set_levels
+      @levels = Training.levels.map { |level, id| [level, level] }
+    end
+
+    def set_places
+      @places = Place.pluck :location, :id
+    end
     
 
     # Only allow a list of trusted parameters through.
