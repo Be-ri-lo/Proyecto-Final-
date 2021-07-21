@@ -61,6 +61,11 @@ class TrainingsController < ApplicationController
     end
   end
 
+  # def partners #pendiente para historia DUS003
+  #   @partner = @user.partner.create(user_id: current_user.id, partner_id: @training.user.id)
+  #   redirect_to root_path, notice: "Quiero entrenar contigo!"
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_training

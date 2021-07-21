@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rateds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rateds.each do |rated| %>
+      <tr>
+        <td><%= link_to 'Show', rated %></td>
+        <td><%= link_to 'Edit', edit_rated_path(rated) %></td>
+        <td><%= link_to 'Destroy', rated, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rated', new_rated_path %>

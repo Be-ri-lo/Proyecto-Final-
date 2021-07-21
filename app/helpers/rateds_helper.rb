@@ -1,0 +1,2 @@
+module RatedsHelper
+end

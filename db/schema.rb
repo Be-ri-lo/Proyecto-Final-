@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_19_030825) do
+ActiveRecord::Schema.define(version: 2021_07_21_214810) do
+
+  create_table "partners", force: :cascade do |t|
+    t.boolean "acepted", default: false
+    t.integer "user_id", null: false
+    t.integer "training_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["training_id"], name: "index_partners_on_training_id"
+    t.index ["user_id"], name: "index_partners_on_user_id"
+  end
 
   create_table "places", force: :cascade do |t|
     t.string "country"
@@ -19,6 +29,29 @@ ActiveRecord::Schema.define(version: 2021_07_19_030825) do
     t.boolean "active", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "fullname", null: false
+    t.string "adress"
+    t.string "phone"
+    t.string "social_media"
+    t.string "image"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "rateds", force: :cascade do |t|
+    t.integer "value"
+    t.text "content"
+    t.integer "user_id", null: false
+    t.integer "training_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["training_id"], name: "index_rateds_on_training_id"
+    t.index ["user_id"], name: "index_rateds_on_user_id"
   end
 
   create_table "trainings", force: :cascade do |t|
@@ -49,6 +82,11 @@ ActiveRecord::Schema.define(version: 2021_07_19_030825) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "partners", "trainings"
+  add_foreign_key "partners", "users"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "rateds", "trainings"
+  add_foreign_key "rateds", "users"
   add_foreign_key "trainings", "places"
   add_foreign_key "trainings", "users"
 end
