@@ -11,4 +11,8 @@ class Training < ApplicationRecord
   def to_s
     self.sport
   end
+
+  def rated?(user)
+    !!self.rateds.find{|rate| rate.user_id == user.id}
+  end
 end

@@ -1,39 +1,32 @@
-<p id="notice"><%= notice %></p>
+<%= render 'shared/navbar' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @training.name %>
-</p>
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-1490129-media_library/original/ecad1816-34f4-4a18-9f0e-1944a2fc7a89.jpeg?im_w=320" class="card-img-top" alt="nieve">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= @training.name %></h5>
+      </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= @training.place.location %></li>
+          <li class="list-group-item"><%= @training.sport %></li>
+          <li class="list-group-item"><%= @training.level %></li>
+          <li class="list-group-item"><%= @training.date %></li>
+        </ul>
+      <div class="card-body">
+        <a href="#" class="card-link">
+          <% if user_signed_in? && @training.user == current_user %>
+            <%= link_to 'Edit', edit_training_path(@training) %> |
+          <% end %>   
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @training.date %>
-</p>
-
-<p>
-  <strong>Sport:</strong>
-  <%= @training.sport %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @training.level %>
-</p>
-
-<!--<p>
-  <strong>Active:</strong>
-  <%= @training.active %>
-</p>-->
-
-<p>
-  <strong>User:</strong>
-  <%= @training.user.name %>
-</p>
-
-<p>
-  <strong>Place:</strong>
-  <%= @training.place.location%>
-</p>
-
-<%= link_to 'Edit', edit_training_path(@training) %> |
 <%= link_to 'Back', trainings_path %>
+
+
+

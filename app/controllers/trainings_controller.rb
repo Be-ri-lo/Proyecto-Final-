@@ -1,6 +1,7 @@
 class TrainingsController < ApplicationController
   before_action :set_training, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user! 
+  before_action :set_current_training, only:[:rated]
   before_action :set_sports, :set_levels, :set_places, only: %i[new edit]  
   
   # GET /trainings or /trainings.json
@@ -16,8 +17,8 @@ class TrainingsController < ApplicationController
 
   # GET /trainings/new
   def new
-    @training = current_user.trainings.build
-    
+    @training = current_user.trainings.build 
+    #format.html { redirect_to @home, notice: "Antes de crear un entrenamiento, debes registrarte"}  
   end
 
   # GET /trainings/1/edit
@@ -66,6 +67,12 @@ class TrainingsController < ApplicationController
   #   redirect_to root_path, notice: "Quiero entrenar contigo!"
   # end
 
+  def rate
+    @training = Training.all.find(params[:id])
+    Rate.create(user_id: current_user.id, training_id: @training.id)
+    redirect_to training_path(@training)
+  end 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_training
@@ -89,6 +96,9 @@ class TrainingsController < ApplicationController
       @places = Place.pluck :location, :id
     end
     
+    def set_current_training
+      @training = training.find(params[:training_id])
+    end
 
     # Only allow a list of trusted parameters through.
     def training_params

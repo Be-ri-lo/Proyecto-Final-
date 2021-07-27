@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :trainings 
-  resources :rateds
+  resources :trainings do
+    resources :rateds
+  end
   resources :partners
   
   resources :places
@@ -9,8 +10,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  resources :users 
-  resources :profiles
+  resources :users do
+    resources :profiles
+  end
   
 
   root 'home#index'

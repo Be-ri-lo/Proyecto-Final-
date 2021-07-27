@@ -2,7 +2,7 @@
 
 <h1>Places</h1>
 
-<table>
+<table id="places">
   <thead>
     <tr>
       <th>Country</th>
@@ -15,15 +15,7 @@
 
   <tbody>
     <% @places.each do |place| %>
-      <tr>
-        <td><%= place.country %></td>
-        <td><%= place.city %></td>
-        <td><%= place.location %></td>
-        <td><%= place.active %></td>
-        <td><%= link_to 'Show', place %></td>
-        <td><%= link_to 'Edit', edit_place_path(place) %></td>
-        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <%= render 'place', place: place %>
     <% end %>
   </tbody>
 </table>

@@ -13,6 +13,10 @@ class PlacesController < ApplicationController
   # GET /places/new
   def new
     @place = Place.new
+
+    # respond_to do |format|
+    #   format.js
+    
   end
 
   # GET /places/1/edit
@@ -27,9 +31,11 @@ class PlacesController < ApplicationController
       if @place.save
         format.html { redirect_to @place, notice: "Place was successfully created." }
         format.json { render :show, status: :created, location: @place }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @place.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
