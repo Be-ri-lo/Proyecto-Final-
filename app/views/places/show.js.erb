@@ -1,0 +1,5 @@
+var place_detail = document.querySelector('#place_detail')
+
+place_detail.innerHTML = '<p><strong>Country:</strong><%= @place.country %></p>'
+place_detail.innerHTML += '<p><strong>City:</strong><%= @place.city %></p>'
+place_detail.innerHTML += '<p><strong>Location:</strong><%= @place.location %></p>'

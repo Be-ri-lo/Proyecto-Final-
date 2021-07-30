@@ -66,4 +66,8 @@ class ProfilesController < ApplicationController
     def profile_params
       params.fetch(:profile, {})
     end
+
+    def profile_params
+      params.require(:profile).permit(:fullname, :adress, :phone, :social_media, :image)
+    end
 end

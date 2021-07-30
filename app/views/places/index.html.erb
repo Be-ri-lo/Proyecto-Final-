@@ -2,6 +2,12 @@
 
 <h1>Places</h1>
 
+<%= render 'form', place: @place %>
+
+
+
+<div id="place_detail"></div>
+
 <table id="places">
   <thead>
     <tr>
@@ -19,6 +25,13 @@
     <% end %>
   </tbody>
 </table>
+
+<%#<ul id="places">
+<%= render @place %>
+<!--</ul>-->
+
+
+
 
 <br>
 

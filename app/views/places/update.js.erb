@@ -1,0 +1,5 @@
+var tr = document.querySelector('tr[data-id="<%= @place.id %>"]')
+tr.innerHTML = '<%= j render "place_detail", place: @place %>'
+
+var place_detail = document.querySelector('#place_detail')
+place_detail.innerHTML = ''

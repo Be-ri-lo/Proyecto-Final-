@@ -373,3 +373,8 @@ hr {
   margin: 10px;
   color: blueviolet;
 }
+
+/* MAP */
+#mapid {
+  height: 180px;
+}

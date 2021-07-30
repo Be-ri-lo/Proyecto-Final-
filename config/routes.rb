@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  resources :users do
-    resources :profiles
-  end
+  resources :users
+  resources :profiles
+  
   
 
   root 'home#index'

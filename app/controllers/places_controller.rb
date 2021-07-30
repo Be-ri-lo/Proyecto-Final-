@@ -3,24 +3,34 @@ class PlacesController < ApplicationController
 
   # GET /places or /places.json
   def index
-    @places = Place.all
+    @places = Place.all #.active scope
+    @place = Place.new
   end
 
   # GET /places/1 or /places/1.json
   def show
+    # respond_to do |format|
+    #   if @place.active
+    #     format.html
+    #     format.js
+    #   else
+    #     format.html { redirect_to root_path, notice: "Didn't find your place" }
+    #   end
+    # end
   end
 
   # GET /places/new
   def new
     @place = Place.new
 
-    # respond_to do |format|
-    #   format.js
     
   end
-
+  
   # GET /places/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /places or /places.json
@@ -30,12 +40,11 @@ class PlacesController < ApplicationController
     respond_to do |format|
       if @place.save
         format.html { redirect_to @place, notice: "Place was successfully created." }
-        format.json { render :show, status: :created, location: @place }
         format.js
+        format.json { render :show, status: :created, location: @place }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @place.errors, status: :unprocessable_entity }
-        format.js
       end
     end
   end
@@ -45,6 +54,7 @@ class PlacesController < ApplicationController
     respond_to do |format|
       if @place.update(place_params)
         format.html { redirect_to @place, notice: "Place was successfully updated." }
+        format.js
         format.json { render :show, status: :ok, location: @place }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,10 +65,12 @@ class PlacesController < ApplicationController
 
   # DELETE /places/1 or /places/1.json
   def destroy
+    #@place.active = false es del scope active
     @place.destroy
     respond_to do |format|
       format.html { redirect_to places_url, notice: "Place was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 

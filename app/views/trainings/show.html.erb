@@ -1,6 +1,62 @@
 <%= render 'shared/navbar' %>
 
-<div class="card mb-3" style="max-width: 540px;">
+<div class="row">
+  <!--izq-->
+  <div class="col-12 col-md-6 bg-primary ">
+    <div class="card mb-3 mx-auto" style="max-width: 540px;">
+      <div class="row g-0">
+        <div class="col-12">
+          <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-1490129-media_library/original/ecad1816-34f4-4a18-9f0e-1944a2fc7a89.jpeg?im_w=320" class="card-img-top" alt="nieve">
+        </div>
+        <div class="col-12">
+          <div class="card-body">
+            <h5 class="card-title"><%= @training.name %></h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-street-view"></i><%= @training.place.location %></li>
+            <li class="list-group-item"><%= @training.sport %></li>
+            <li class="list-group-item"><%= @training.level %></li>
+            <li class="list-group-item"><%= @training.date %></li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">
+              <% if user_signed_in? && @training.user == current_user %>
+                <%= link_to 'Edit', edit_training_path(@training) %> |
+              <% end %>   
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <!--der-->
+  <div class="col-12 col-md-6 bg-secondary">
+    <div id="mapid"></div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
       <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-1490129-media_library/original/ecad1816-34f4-4a18-9f0e-1944a2fc7a89.jpeg?im_w=320" class="card-img-top" alt="nieve">
@@ -10,7 +66,7 @@
         <h5 class="card-title"><%= @training.name %></h5>
       </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= @training.place.location %></li>
+          <li class="list-group-item"><i class="fas fa-street-view"></i><%= @training.place.location %></li>
           <li class="list-group-item"><%= @training.sport %></li>
           <li class="list-group-item"><%= @training.level %></li>
           <li class="list-group-item"><%= @training.date %></li>
@@ -24,7 +80,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 <%= link_to 'Back', trainings_path %>
 
