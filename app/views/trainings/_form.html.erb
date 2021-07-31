@@ -37,14 +37,14 @@
     <%= form.select :place_id, @places, prompt: "Seleccione una opción" %>
   </div>
 
-  <%# <div class="field"> active storage, preguntar
+  <div class="field"> <!--active storage, preguntar-->
     <%= form.label :image %>
-    <%# <%= form.file_field :image %> 
-  <%# </div> %> 
+    <%= form.file_field :images, multiple: true %>
+  </div> 
 
-  <p><%= link_to 'Add new place', new_place_path, remote: false %></p>
-  
-  
+ 
+  <%#<p><%= link_to 'Add new place', new_place_path, remote: true %></p>
+   
   <%# <div class="field"> <!--Render de ujs de places, para que con un boton se genere un formulario de ubicación nueva.-->
     <%= form.label :place_id %>
     <%# <%= form.select :place_id, @places, prompt: "Seleccione una opción" %> 

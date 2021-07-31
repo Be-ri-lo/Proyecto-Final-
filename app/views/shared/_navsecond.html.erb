@@ -56,3 +56,44 @@
     <!--</div>
   </div>
 </nav>-->
+
+
+
+
+<%= form_with(model: place, local: false) do |form| %>
+  <% if place.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(place.errors.count, "error") %> prohibited this place from being saved:</h2>
+
+      <ul>
+        <% place.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :active %>
+    <%= form.check_box :active %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit data: { disable_with: 'Creando Lugar nuevo', confirm: 'Estás seguro?' } %>
+  </div>
+<% end %>

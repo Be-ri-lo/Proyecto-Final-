@@ -7,8 +7,8 @@
       <% if user_signed_in? %>
               <li><a href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
               <li><a href="#"><%= link_to 'Trainings', trainings_path %></a></li>
-              <li><a href="#"><%= link_to 'Crear entrenamiento', new_training_path %></a></li>
-              <li><a href="#"><%= link_to 'Buscar entrenamiento', trainings_path %></a></li> <!--Generar el search para entrenamientos según tu ubicación-->
+              <li><a href="#"><%= link_to 'Crear entrenamiento',  new_training_path %></a></li>
+              <li><a href="#"><%= link_to 'Buscar entrenamiento', places_path %></a></li> <!--Generar el search para entrenamientos según tu ubicación-->
               <li><a href="#"><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></a></li>
               <!--<li><a href="#"> link_to 'Administrador', new_admin_user_session_path </a></li>-->
             <% else %>

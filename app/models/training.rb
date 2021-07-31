@@ -5,6 +5,8 @@ class Training < ApplicationRecord
   has_many :rateds
   has_many :partners
 
+  has_many_attached :images
+
   enum sport: [:Running, :Trekking, :Roller, :Bike, :Climbing, :Surf, :Funcional, :Tenis, :Futbol, :Voleibol, :Slackline, :Birdwatching]
   enum level: [:Básico, :Intermedia, :Avanzada]
 

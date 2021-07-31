@@ -5,13 +5,16 @@ Rails.application.routes.draw do
   end
   resources :partners
   
-  resources :places
+  resources :places do
+    resources :trainings
+  end
   
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  resources :users
-  resources :profiles
+  resources :users do
+    resources :profiles
+  end
   
   
 
