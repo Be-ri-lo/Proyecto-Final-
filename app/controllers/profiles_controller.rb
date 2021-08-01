@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles or /profiles.json
   def index
-    @profiles = Profile.all
+    @profiles = Profile.with_attached_image.all
   end
 
   # GET /profiles/1 or /profiles/1.json

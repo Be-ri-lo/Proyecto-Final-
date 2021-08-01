@@ -59,3 +59,5 @@ end
 gem 'devise'
 gem 'faker'
 gem 'bootstrap'
+gem 'image_processing', '~> 1.0'
+gem 'mini_magick'

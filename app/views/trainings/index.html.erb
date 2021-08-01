@@ -14,7 +14,7 @@
 
       <div class="col">
         <div class="card h-100">
-          <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-1490129-media_library/original/ecad1816-34f4-4a18-9f0e-1944a2fc7a89.jpeg?im_w=320" class="card-img-top" alt="nieve">
+          <img src="<%#<%= image_tag Training.last.images.last.variant(resize: "100x100").processed %>#%>" class="card-img-top" alt="nieve"> <!--Chequear!!-->
           <div class="card-body">
             <h5 class="card-title"><%= training.name %></h5>
           </div>
