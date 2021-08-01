@@ -24,15 +24,15 @@
               <li class="list-group-item"><%= training.level %></li>
               <li class="list-group-item"><%= training.date %></li>
             </ul>
-          <% if user_signed_in? %>
-                <!--Boton rated-->
-                <% if training.rated?(current_user)%> 
-                  <td><%= button_to 'rated', training_rateds_path(training) %></td>
-                <% else %>
-                  <td><%= button_to 'rated', training_rateds_path(training) %></td>
-                <% end %> 
-          <% end %>
           <div class="card-body">
+            <% if user_signed_in? %>
+                  <!--Boton rated-->
+                  <% if training.rated?(current_user)%> 
+                    <td><%= button_to 'rated', training_rateds_path(training) %></td>
+                  <% else %>
+                    <td><%= button_to 'rated', training_rateds_path(training) %></td>
+                  <% end %> 
+            <% end %>
             <a href="#" class="card-link">
               <%= link_to 'Show', training %>
               <% if user_signed_in? && @training.user == current_user %>
