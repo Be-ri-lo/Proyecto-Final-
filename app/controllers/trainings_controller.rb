@@ -6,7 +6,7 @@ class TrainingsController < ApplicationController
   
   # GET /trainings or /trainings.json
   def index
-    @trainings = Training.all
+    @trainings = Training.with_attached_images.all
     @training = Training.new
   end
 
