@@ -1,30 +1,46 @@
-<div class="container">
-  <nav class="nav-main">
-    <a href="">
-      <i class="fas fa-kiwi-bird"></i>
-    </a>
-    <ul class="nav-menu">
-      <% if user_signed_in? %>
-              <li><a href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
-              <li><a href="#"><%= link_to 'Trainings', trainings_path %></a></li>
-              <li><a href="#"><%= link_to 'Crear entrenamiento',  new_training_path %></a></li>
-              <li><a href="#"><%= link_to 'Buscar entrenamiento', places_path %></a></li> <!--Generar el search para entrenamientos según tu ubicación-->
-              <li><a href="#"><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></a></li>
-              <!--<li><a href="#"> link_to 'Administrador', new_admin_user_session_path </a></li>-->
-            <% else %>
-              <!--<li><a href="#"># link_to 'Administrador', new_admin_user_session_path </a></li>-->
-              <li><a href="#"><%= link_to 'Regístrate', new_user_registration_path %></a></li>
-              <li><a href="#"><%= link_to 'Iniciar sesión', new_user_session_path %></a></li>
-            <% end %>
-    </ul>
+<div class="container-fluid p-0">
+  <nav class="row justify-content-between px-4">
+    <div class="col-3 my-auto py-2" >
+      <a href="#" class="logo-btn" role="button">
+        <i class="fas fa-kiwi-bird"></i>
+      </a>
+    </div>
 
-    <ul class="nav-menu-right">
-      <li>
-        <a href="#">
-          <i class="fas fa-search"></i>
-        </a>
-      </li>
-    </ul>
+    <div class="col-5 my-auto p-2 radius-container custom-shadow">
+      <div class="row px-2 align-content-center">
+        <div class="col-11">
+          <input type="text" class="search-input">
+        </div>
+        <div class="col-1 my-auto p-0">
+          <button class="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3 my-auto">
+      <div class="row justify-content-end">
+        <div class="col-3 my-auto p-2 radius-container custom-shadow dropdown show">
+          <a href="#" class="profile-btn d-flex justify-content-evenly" role="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+            <i class="fas fa-bars"></i><i class="far fa-user-circle"></i>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 custom-shadow border-0" aria-labelledby="defaultDropdown">
+            <% if user_signed_in? %>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Trainings', trainings_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Crear entrenamiento', new_training_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Buscar entrenamiento', places_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></a></li>
+            <% else %>
+              <li class="p-1"><a href="#"><%= link_to 'Regístrate', new_user_registration_path %></a></li>
+              <li class="p-1"><a href="#"><%= link_to 'Iniciar sesión', new_user_session_path %></a></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </nav>
   <hr>
 </div>

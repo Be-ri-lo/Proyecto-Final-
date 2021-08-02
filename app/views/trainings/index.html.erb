@@ -1,5 +1,5 @@
 
-<p id="notice"><%= notice %></p> <!--podría ser ujs-->
+<%# <p id="notice"><%= notice %></p> <!--podría ser ujs-->
 
 <h1 class="training">Trainings</h1>
  
@@ -25,19 +25,22 @@
               <li class="list-group-item"><%= training.date %></li>
             </ul>
           <div class="card-body">
-            <% if user_signed_in? %>
-                  <!--Boton rated-->
+            <% if user_signed_in? %> <!--&& training.concluded-->
+                  <!--Rated-->
                   <% if training.rated?(current_user)%> 
-                    <td><%= button_to 'rated', training_rateds_path(training) %></td>
+                    <td><%= link_to 'Calificar', training_rateds_path(training) %></td>
                   <% else %>
-                    <td><%= button_to 'rated', training_rateds_path(training) %></td>
+                    <td><%= link_to 'Calificar', training_rateds_path(training) %></td>
                   <% end %> 
             <% end %>
             <a href="#" class="card-link">
-              <%= link_to 'Show', training %>
+              <%= link_to 'Mirar', training %>
               <% if user_signed_in? && @training.user == current_user %>
-                <%= link_to 'Edit', edit_training_path(@training) %> |
+                <%= link_to 'Editar', edit_training_path(@training) %> |
               <% end %>   
+            </a>
+            <a href="#" class="card-link">
+              <%= link_to 'Entrenar', training %> <!--Este link es para pedir solicitud de entrenamiento--> 
             </a>
           </div>
         </div>

@@ -28,7 +28,6 @@ class TrainingsController < ApplicationController
   # POST /trainings or /trainings.json
   def create
     @training = Training.new(training_params.merge(user: current_user)) #, place: :place_id
-
     respond_to do |format|
       if @training.save
         format.html { redirect_to @training, notice: "Training was successfully created." }

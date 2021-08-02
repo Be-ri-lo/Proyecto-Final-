@@ -1,24 +1,22 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   
   resources :trainings do
-    resources :rateds
+    resources :rateds, except: [:index]
   end
+  
   resources :partners
   
   resources :places do
     resources :trainings
   end
   
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
   resources :users do
     resources :profiles
   end
   
-  
-
   root 'home#index'
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
 end

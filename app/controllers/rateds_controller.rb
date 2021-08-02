@@ -22,6 +22,7 @@ class RatedsController < ApplicationController
   # POST /rateds or /rateds.json
   def create
     @rated = Rated.new(rated_params)
+    @rated.user_id = current_user.id
 
     respond_to do |format|
       if @rated.save
@@ -64,6 +65,6 @@ class RatedsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rated_params
-      params.fetch(:rated, {})
+      params.require(:rated).permit(:value, :content)
     end
 end

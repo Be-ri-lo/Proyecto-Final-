@@ -4,7 +4,7 @@
     <div class="card mb-3 mx-auto" style="max-width: 540px;">
       <div class="row g-0">
         <div class="col-12">
-          <img src="<%#<%= image_tag Training.last.images.last.variant(resize: "100x100").processed %>#%>" class="card-img-top" alt="nieve"> <!--Chequear!!-->
+          <%= image_tag @training.images.variant(resize: "100x100").processed if @training.images.attached?%> <!--Chequear!!-->
         </div>
         <div class="col-12">
           <div class="card-body">

@@ -2,14 +2,14 @@
     <!--Llamado a registrarse-->
     <header class="showcase">
       <h1>¿Aún no eres parte?</h1>
-      <h3>Atrevete a participar!</h3>
-        <%= link_to 'Únete', new_user_registration_path %> <i class="fas fa-chevron-right"></i>
+      <h3>¡Atrévete a participar!</h3>
+        <%= link_to 'Únete <i class="fas fa-chevron-right"></i>'.html_safe, new_user_registration_path %>
     </header>
 
     
-    <!--Como crear un entrenamiento-->
+    <!--Cómo crear un entrenamiento-->
     <section class="cards-banner-one">
-      <h2>Pasos para crear un entrenamiento!</h2>
+      <h2>Pasos para crear un entrenamiento</h2>
       <div class="news-cards">
         <div>
           <i class="far fa-hand-point-up"></i>
@@ -42,7 +42,7 @@
     <!--Buscar entrenamiento-->
     <div class="cards-banner-one">
         <h2>¿No sabes cuál elegir?</h2>
-        <h3>No importa! nosotros te ayudamos!</h3>
+        <h3>¡No importa! ¡nosotros te ayudamos!</h3>
       <a href="#"><%= link_to 'Training', trainings_path %> </a>
     </div>
     <hr>
@@ -50,7 +50,8 @@
     <!--Gente que ya lo usa-->
     <!-- Card Banner 1-->
     <section class="cards-banner-one">
-        <h2>Ellos ya lo han probado!</h2>
+      <div>
+        <h2>¡Ellos ya lo han probado!</h2>
         <!-- lorem 20 -->
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat maxime facilis quasi alias illo, fugiat
           cupiditate porro dolores tenetur delectus!</p>
@@ -64,7 +65,7 @@
 
      <!-- Follow -->
     <section class="social">
-      <p>Follow TechNews</p>
+      <p>Follow Partners</p>
       <div class="links">
         <a href="https://facebook.com">
           <i class="fab fa-facebook-f"></i>
@@ -72,16 +73,12 @@
         <a href="https://twitter.com">
           <i class="fab fa-twitter"></i>
         </a>
-        <a href="https://linkdin.com">
-          <i class="fab fa-linkedin"></i>
+        <a href="https://instagram.com">
+          <i class="fab fa-instagram"></i>
         </a>
       </div>
     </section>
   </div>
-
- 
-   
-
 </div>
 
 <%= render 'shared/footer' %>
