@@ -24,18 +24,29 @@ class Training < ApplicationRecord
     self.sport
   end
 
-  def rated?(user)
-    !!self.rateds.find{|rate| rate.user_id == user.id}
-  end
+  # Si el entrenamiento terminó, puedes evaluar
+  # def concluded?
+  #   if @training.date < Date.today
+  #     puts "Puedes evaluar"
+  #   end  
+  # end
 
+  #Entregar evaluacion
   def average_stars
-    n = self.revisions.pluck(:rating)
-    x = self.audits.all.count
+    n = self.rateds.pluck(:rateds)
+    x = self.users.all.count
     if x > 0 && !n.empty?
       n.sum/x
     else
       0
     end
   end
+  
+  # Si fue evaluado, no evaluarlo de nuevo
+  def rated?(user)
+    !!self.rateds.find{|rate| rate.user_id == user.id}
+  end
+
+  
 
 end
