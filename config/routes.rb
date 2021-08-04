@@ -13,9 +13,9 @@ Rails.application.routes.draw do
     resources :trainings
   end
   
-  resources :users do
-    resources :profiles
-  end
+  resources :users
+  resources :profiles
+  
   
   root 'home#index'
   

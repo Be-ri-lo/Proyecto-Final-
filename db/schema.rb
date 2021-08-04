@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_07_28_015229) do
   end
 
   create_table "partners", force: :cascade do |t|
-    t.boolean "acepted", default: false
+    t.integer "state", default: 0
     t.integer "user_id", null: false
     t.integer "training_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -3,7 +3,7 @@ class Training < ApplicationRecord
   belongs_to :place
 
   has_many :rateds
-  has_many :users, through: :rateds
+  #has_many :users, through: :rateds
   has_many :partners
 
   has_many_attached :images
@@ -25,16 +25,14 @@ class Training < ApplicationRecord
   end
 
   # Si el entrenamiento terminó, puedes evaluar
-  # def concluded?
-  #   if @training.date < Date.today
-  #     puts "Puedes evaluar"
-  #   end  
-  # end
+  def concluded?
+     self.date < Date.today
+  end
 
   #Entregar evaluacion
   def average_stars
     n = self.rateds.pluck(:rateds)
-    x = self.users.all.count
+    x = self.rateds.all.count
     if x > 0 && !n.empty?
       n.sum/x
     else

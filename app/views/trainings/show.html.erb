@@ -4,7 +4,11 @@
     <div class="card mb-3 mx-auto" style="max-width: 540px;">
       <div class="row g-0">
         <div class="col-12">
-          <%= image_tag @training.images.variant(resize: "100x100").processed if @training.images.attached?%> <!--Chequear!!-->
+        <% if @training.images.any? %>
+          <% @training.images.each do |image| %>
+          <%= image_tag image.variant(resize: "100x100").processed %>
+          <% end %>
+        <% end %>
         </div>
         <div class="col-12">
           <div class="card-body">
@@ -14,8 +18,9 @@
             <li class="list-group-item"><i class="fas fa-street-view"></i> <%= @training.place.location %></li>
             <li class="list-group-item"><i class="fas fa-running"></i> <%= @training.sport %></li>
             <li class="list-group-item"><i class="fas fa-signal"></i> <%= @training.level %></li>
-            <li class="list-group-item"><i class="far fa-calendar-alt"></i> <%= @training.date %></li>
+            <li class="list-group-item"><i class="far fa-calendar-alt"></i> <%= @training.date.strftime('%d-%m-%y -> %H:%M') %></li>
           </ul>
+          <hr>
           <div>
             Calificacion: <%= @training.average_stars.times do %> <!--Falta estrellas, pero usaré fetch para que se genere el select de estrellas.-->
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -37,10 +42,12 @@
     
   <!--der-->
   <div class="col-12 col-md-6 bg-secondary">
-    <div id="map" style="width: 100%; height: 400px"></div>
+    <div id="mapid">
+      <h1>Mapa</h1>
+      <script>
+        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
     
-    </div>
-      
+    
     </div>
   </div>
 

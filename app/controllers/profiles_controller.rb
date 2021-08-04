@@ -4,6 +4,7 @@ class ProfilesController < ApplicationController
   # GET /profiles or /profiles.json
   def index
     @profiles = Profile.with_attached_image.all
+    @profile =  Profile.where(user_id: current_user.id)
   end
 
   # GET /profiles/1 or /profiles/1.json

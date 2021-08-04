@@ -1,7 +1,7 @@
 class CreatePartners < ActiveRecord::Migration[6.1]
   def change
     create_table :partners do |t|
-      t.boolean :acepted, default: false
+      t.integer :state, default: 0
       t.references :user, null: false, foreign_key: true
       t.references :training, null: false, foreign_key: true
 

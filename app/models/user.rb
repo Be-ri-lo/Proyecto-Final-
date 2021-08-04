@@ -5,11 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :trainings
-  has_many :rateds
-  has_many :trainings, through: :rateds, dependent: :destroy
+  # has_many :rateds
+  # has_many :trainings, through: :rateds, dependent: :destroy
 
-  has_many :partners
-  has_many :trainings, through: :partners, dependent: :destroy
+  # has_many :partners
+  # has_many :trainings, through: :partners, dependent: :destroy
 
   has_one :profile
 

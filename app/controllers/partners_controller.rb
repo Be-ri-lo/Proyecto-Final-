@@ -3,7 +3,7 @@ class PartnersController < ApplicationController
 
   # GET /partners or /partners.json
   def index
-    @partners = Partner.all
+    @partners = Partner.where(training_id: current_user.trainings.pluck(:id))
   end
 
   # GET /partners/1 or /partners/1.json

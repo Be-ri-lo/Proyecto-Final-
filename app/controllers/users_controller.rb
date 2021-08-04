@@ -4,10 +4,13 @@ class UsersController < ApplicationController
     # GET /users or /users.json
     def index
       @users = User.all
+      @user = User.new
     end
   
     # GET /users/1 or /users/1.json
     def show
+      @training = current_user.trainings.build if logged_in?
+      @user = User.new
     end
   
     # GET /users/new
