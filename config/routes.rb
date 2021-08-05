@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :trainings
   end
   
-  resources :users
+  resources :users do
+    collection do
+      get 'dashboard'
+    end 
+  end
   resources :profiles
   
   

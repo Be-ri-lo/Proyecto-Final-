@@ -1,76 +1,19 @@
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
+      <img src="https://mountaingames.com/wp-content/uploads/2019/05/2018_Vail_Kyra_Mionske_feature-shot.jpg" class="d-center w-50" alt="">
+    </div>
     
-          <script>
-            fetch('https://randomuser.me/api/?inc=gender,name')
-            .then((response) => response.json())
-            .then(function(data){
-                const users = data.results.map(function(user){
-                    const node = document.createElement('div')
-                    node.className = 'card'
-                    node.innerHTML = ` 
-                          <div class="user-profile">
-                              <img id="avatar" src="https://randomuser.me/api/portraits/med/woman/6.jpg" />
-                              <div id="cols-6  fullname">${user.name.first} ${user.name.last}</div>
-                              <div class="description">
-                                <%# <div class="footer">
-                                  <button id="btn">Next User!</button>
-                                </div> %>
-                              </div>
-                            </div>
-                          <div class="user-profile">
-                              <img id="avatar" src="https://randomuser.me/api/portraits/med/woman/6.jpg" />
-                              <div id="cols-6  fullname">${user.name.first} ${user.name.last}</div>
-                              <div class="description">
-                                <%# <div class="footer">
-                                  <button id="btn">Next User!</button>
-                                </div> %>
-                              </div>
-                            </div>`
-                    return node
-                })
-                const cardDeck = document.querySelector('.carousel-item')
-                users.forEach((user) => cardDeck.appendChild(user))
-            })
-            .catch((error) => console.error(error))
-          </script>
+    <div class="carousel-item">
+      <img src="https://www.vichealth.vic.gov.au/-/media/Images/VicHealth/sponsorshippolicy1200x525.jpg?h=525&la=en&w=1200&hash=AE8F82C0B994B33E79DF7584711D282B172AB497" class="d-center w-50" alt="">
     </div>
 
     <div class="carousel-item">
-       <script>
-            fetch('https://randomuser.me/api/?inc=gender,name')
-            .then((response) => response.json())
-            .then(function(data){
-                const users = data.results.map(function(user){
-                    const node = document.createElement('div')
-                    node.className = 'card'
-                    node.innerHTML = ` 
-                          <div class="user-profile">
-                              <img id="avatar" src="https://randomuser.me/api/portraits/med/woman/6.jpg" />
-                              <div id="cols-6  fullname">${user.name.first} ${user.name.last}</div>
-                              <div class="description">
-                                <%# <div class="footer">
-                                  <button id="btn">Next User!</button>
-                                </div> %>
-                              </div>
-                            </div>
-                          <div class="user-profile">
-                              <img id="avatar" src="https://randomuser.me/api/portraits/med/woman/6.jpg" />
-                              <div id="cols-6  fullname">${user.name.first} ${user.name.last}</div>
-                              <div class="description">
-                                <%# <div class="footer">
-                                  <button id="btn">Next User!</button>
-                                </div> %>
-                              </div>
-                            </div>`
-                    return node
-                })
-                const cardDeck = document.querySelector('.carousel-item')
-                users.forEach((user) => cardDeck.appendChild(user))
-            })
-            .catch((error) => console.error(error))
-          </script>
+      <img src="https://www.salleurl.edu/sites/default/files/styles/capsalera_node/public/content/nodes/View%20Page/image/21433/39068/la-salle-sport-fitness-campus-barcelona.jpg" class="d-center w-50" alt="">    
+    </div>
+
+    <div class="carousel-item">
+      <img src="https://areajugones.sport.es/wp-content/uploads/2020/06/skater-xl.jpg" class="d-center w-50" alt="">    
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
