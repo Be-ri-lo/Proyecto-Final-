@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @profiles.each do |profile| %>
+    <% @profiles.each do |user| %>
       <tr>
         <td><%= user.name %></td>
         <td><%= user.profile.social_media%> </td>
@@ -28,4 +28,6 @@
 
 <br>
 
+
+<%= pie_chart @user_group, legend: "bottom" %>
 <%#= link_to 'New Profile', new_user_profile_path %>

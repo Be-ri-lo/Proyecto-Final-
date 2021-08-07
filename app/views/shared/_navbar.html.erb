@@ -9,15 +9,31 @@
     <div class="col-5 my-auto p-2 radius-container custom-shadow">
       <div class="row px-2 align-content-center">
         <div class="col-11">
-          <input type="text" class="search-input">
+          <!--<input type="text" class="search-input">-->
+            <%= form_tag(places_path, method: :get, class:"form-inline", role: 'search') do %>
+              <div class="input-group">
+                  <%= text_field_tag :location,
+                  params[:location],
+                  id: 'places_search',
+                  class: 'form-control' %>              
+                
+                <div class="col-5 my-auto p-0">
+                  <div class="input-group-btn search-panel">
+                    <%= button_to 'Clear', root_path, class: "btn btn-default" %>
+                    <%= submit_tag 'Search', name: nil, class: "fas fa-search" %>
+                  </div>
+                  <%# <button class="search-btn">
+                    <i class="fas fa-search"></i>
+                  </button> %>
+                </div>
+              </div>
+            <% end %>
         </div>
-        <div class="col-1 my-auto p-0">
-          <button class="search-btn">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+        
       </div>
     </div>
+
+    
 
     <div class="col-1 my-auto">
       <div class="row justify-content-end">
@@ -39,6 +55,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 custom-shadow border-0" aria-labelledby="defaultDropdown">
             <% if user_signed_in? %>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Perfil', users_path%></a></li>
               <li><a class="dropdown-item" href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
               <li><a class="dropdown-item" href="#"><%= link_to 'Trainings', trainings_path %></a></li>
               <li><a class="dropdown-item" href="#"><%= link_to 'Crear entrenamiento', new_training_path %></a></li>

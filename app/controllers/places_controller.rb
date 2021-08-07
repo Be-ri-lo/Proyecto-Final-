@@ -3,9 +3,17 @@ class PlacesController < ApplicationController
 
   # GET /places or /places.json
   def index
-    @places = Place.all #.active scope
-    @place = Place.new
-  end
+    # @places = Place.all #.active scope
+    # @place = Place.new
+    # Searchkick
+    search = params[:location].present? ? params[:location] : nil
+      @places = if search
+        Place.where("country LIKE ? OR city LIKE? OR location LIKE?", "%#{search}%", "%#{search}%", "%#{search}%")
+        #Place.search(search)
+      else
+        Place.all
+      end
+    end
 
   # GET /places/1 or /places/1.json
   def show

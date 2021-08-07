@@ -6,13 +6,25 @@ class TrainingsController < ApplicationController
   
   # GET /trainings or /trainings.json
   def index
+    @training_group = Training.group(:user_id).count.transform_keys {|key| User.find(key).name}
+    @training_sport = Training.group(:sport).count
+
     @trainings = Training.with_attached_images.all
     @training = Training.new
+
+    search = params[:sport].present? ? params[:sport] : nil
+      @trainings = if search
+        Training.where("sport LIKE ? OR level LIKE? OR date LIKE?", "%#{search}%", "%#{search}%", "%#{search}%")
+        #Place.search(search)
+      else
+        Training.all
+      end
   end
 
   # GET /trainings/1 or /trainings/1.json
   def show
     @training = Training.find(params[:id])
+    @place = Place.new
   end
 
   # GET /trainings/new

@@ -1,19 +1,9 @@
-<%= form_with(model: rated) do |form| %>
-  <% if rated.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(rated.errors.count, "error") %> prohibited this rated from being saved:</h2>
-
-      <ul>
-        <% rated.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: @rated) do |form| %>
+  
 
   <div class="field">
     <%= form.label :value %>
-    <%= form.text_area :value %>
+    <%= form.number_field :value %>
   </div>
 
   <div class="actions">

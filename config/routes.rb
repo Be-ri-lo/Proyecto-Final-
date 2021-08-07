@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -14,11 +17,11 @@ Rails.application.routes.draw do
   end
   
   resources :users do
-    collection do
-      get 'dashboard'
-    end 
+    # collection do
+    #   get 'dashboard'
+    # end 
+    resources :trainings
   end
-  resources :profiles
   
   
   root 'home#index'

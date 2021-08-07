@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+       <th>Entrenamientos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  
+  <% if user_signed_in?  %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.image %></td>
+        <td><%= user.trainings.join(',')%></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <li class="p-1"><a href="#"><%= link_to 'Regístrate', new_user_registration_path %></a></li>
+    <li class="p-1"><a href="#"><%= link_to 'Iniciar sesión', new_user_session_path %></a></li>
+  <% end %>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= pie_chart @user_group, legend: "bottom" %>
+
+<%= link_to 'New User', new_user_path %>

@@ -1,4 +1,6 @@
 class Training < ApplicationRecord
+  searchkick word_start: [:sport]
+
   belongs_to :user
   belongs_to :place
 
@@ -44,6 +46,17 @@ class Training < ApplicationRecord
   def rated?(user)
     !!self.rateds.find{|rate| rate.user_id == user.id}
   end
+
+  def search_data
+    {
+         country: country,
+         city: city,
+         location: location, null: false,
+         sport: sport, null: false,
+         level: level, null: false,
+         date: date
+    }
+ end
 
   
 

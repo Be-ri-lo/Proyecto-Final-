@@ -15,7 +15,7 @@
   <tbody>
     <% @profiles.each do |profile| %>
       <tr>
-        <td><%= profile.user %></td>
+        <td><%= profile.user_id %></td>
         <td><%= profile.social_media%> </td>
         <td><%= profile.image%> </td>
         <td><%= link_to 'Show', profile %></td>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Profile', new_profile_path %>
+<%= link_to 'New Profile', new_user_profile_path %>

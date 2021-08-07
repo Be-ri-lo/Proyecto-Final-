@@ -94,6 +94,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chartkick (4.0.5)
     childprocess (3.0.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
@@ -140,6 +141,8 @@ GEM
     formtastic_i18n (0.7.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    groupdate (5.2.2)
+      activesupport (>= 5)
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
@@ -315,8 +318,10 @@ DEPENDENCIES
   bootstrap
   byebug
   capybara (>= 3.26)
+  chartkick
   devise
   faker
+  groupdate
   image_processing (~> 1.0)
   jbuilder (~> 2.7)
   listen (~> 3.3)

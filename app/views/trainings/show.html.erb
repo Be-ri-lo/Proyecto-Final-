@@ -22,6 +22,21 @@
           </ul>
           <hr>
           <div>
+
+            <div class="">
+              <% if @training.concluded? %>
+                <%= render "rateds/form" %>
+              <% else %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>
+                  <ul>
+                    <% @training.errors.each do |error| %>
+                      <li><%= error.full_message %></li>
+                    <% end %>
+                  </ul>
+                </div>              
+              <% end %>
+            </div>
             Calificacion: <%= @training.average_stars.times do %> <!--Falta estrellas, pero usaré fetch para que se genere el select de estrellas.-->
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -42,13 +57,22 @@
     
   <!--der-->
   <div class="col-12 col-md-6 bg-secondary">
-    <div id="mapid">
+    <div id="mapid"></div>
       <h1>Mapa</h1>
       <script>
         var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: 'your.mapbox.access.token'
+        }).addTo(mymap);
+      </script>
     
     
-    </div>
   </div>
 
 </div>

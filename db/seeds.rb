@@ -7,8 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-    trainings = Training.create(sport: Faker::Hobby.activity )
-                                
-    puts "training Created: #{@training}"
 
-
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

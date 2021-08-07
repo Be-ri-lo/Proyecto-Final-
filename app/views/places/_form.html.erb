@@ -9,7 +9,7 @@
     <% end %>
 <%# NOTE AUTHOR STEP 2: Conditionally load a non-AJAX version of the form when on `authors#edit`. %>
 <% else %>
-    <%= form_with model: @place, local: true  do |f| %>
+    <%= form_with model: @place, local: false  do |f| %>
         <%= render 'shared/validation-messages', object: f.object %>
         <%= render 'places/form-fields', f: f %>
     <% end %>
