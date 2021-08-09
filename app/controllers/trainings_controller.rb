@@ -25,11 +25,13 @@ class TrainingsController < ApplicationController
   def show
     @training = Training.find(params[:id])
     @place = Place.new
+    
   end
 
   # GET /trainings/new
   def new
     @training = current_user.trainings.build 
+    
     #format.html { redirect_to @home, notice: "Antes de crear un entrenamiento, debes registrarte"}  
   end
 

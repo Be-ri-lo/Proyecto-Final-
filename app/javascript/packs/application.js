@@ -8,14 +8,22 @@ import Turbolinks from "turbolinks";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
 import "chartkick/chart.js";
-
-Rails.start();
-Turbolinks.start();
-ActiveStorage.start();
-
 //= require jquery
 //= require jquery-ui
 //= require popper
 //= require bootstrap-sprockets
 //= require "highcharts"
 //= require_tree .
+
+import place_create from "../src/place_create";
+
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
+
+document.addEventListener("submit", function (e) {
+  if (e.target.matches(".places_form_with")) {
+    e.preventDefault();
+    places_create(e);
+  }
+});

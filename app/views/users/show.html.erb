@@ -14,7 +14,9 @@
   <strong>Image:</strong>
   <%= @user.image %>
 </p>
-<%= pie_chart @user_group, legend: "bottom" %>
+<%= pie_chart @training_group, legend: "bottom" %>
+<%= line_chart @training_group, legend: ""%>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

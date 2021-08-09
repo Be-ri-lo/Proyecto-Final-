@@ -29,9 +29,7 @@ class PlacesController < ApplicationController
 
   # GET /places/new
   def new
-    @place = Place.new
-
-    
+    @place = Place.new 
   end
   
   # GET /places/1/edit
@@ -73,12 +71,14 @@ class PlacesController < ApplicationController
 
   # DELETE /places/1 or /places/1.json
   def destroy
-    #@place.active = false es del scope active
-    @place.destroy
+    @place.active = false
+    
     respond_to do |format|
-      format.html { redirect_to places_url, notice: "Place was successfully destroyed." }
-      format.json { head :no_content }
-      format.js
+      if @place.save
+        format.html { redirect_to places_url, notice: "Place was successfully destroyed." }
+        format.json { head :no_content }
+        format.js
+      end
     end
   end
 

@@ -1,26 +1,27 @@
-function createUser(element) {
-  return document.createElement(element);
-}
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+    const cardDeck = document.querySelector("#get_api.card-deck");
+    if (!cardDeck) return 0;
 
-function append(parent, element) {
-  return parent.appendChild(element);
-}
+    fetch("https://randomuser.me/api/?results=50")
+      .then((response) => response.json())
+      .then(function (data) {
+        const users = data.results.map(function (user) {
+          const node = document.createElement("div");
+          node.className = "card";
+          node.innerHTML = `
+          <div class="card-body">
+              <h5 class="card-title">${user.name.first}</h5>
+              <p class="card-text">${user.email}</p>
+          </div>`;
 
-fetch("https://randomuser.me/api/?results=3&inc=gender,name,nat=es")
-  .then((resp) => resp.json())
-  .then(function (data) {
-    let users = data.results;
-    return users.map(function (user) {
-      let li = createUser("li"),
-        img = createUser("img"),
-        p = createUser("p");
-      img.src = user.picture.large;
-      p.innerHTML = `${user.name.first} ${user.name.last}`;
-      append(li, img);
-      append(li, p);
-      append(document.getElementById("users"), li);
-    });
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+          return node;
+        });
+
+        users.forEach((user) => cardDeck.appendChild(user));
+      })
+      .catch((error) => console.error(error));
+  },
+  false
+);

@@ -1,14 +1,11 @@
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+var training_detail = document.querySelector('#training_detail')
 
-console.log(mymap)
+training_detail.innerHTML = '<p><strong>Nombre:</strong><%= @training.name %></p>'
+training_detail.innerHTML += '<p><strong>Deporte:</strong><%= @training.sport %></p>'
+training_detail.innerHTML += '<p><strong>Nivel:</strong><%= @training.level %></p>'
+training_detail.innerHTML += '<p><strong>Fecha:</strong><%= @training.date %></p>'
+training_detail.innerHTML += '<p><strong>Deportista:</strong><%= @training.user.name %></p>'
+training_detail.innerHTML += '<p><strong>Lugar:</strong><%= @training.place.id %></p>'
 
-// L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//     maxZoom: 18,
-//     id: 'mapbox/streets-v11',
-//     tileSize: 512,
-//     zoomOffset: -1,
-//     accessToken: 'your.mapbox.access.token'
-// }).addTo(mymap);
-
-// var marker = L.marker([51.5, -0.09]).addTo(mymap);
+var input_text = document.querySelector('[a="training[Show]"]')
+input_text.value = ''

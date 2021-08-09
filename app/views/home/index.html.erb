@@ -51,13 +51,33 @@
     <!-- Card Banner 1-->
     <section class="cards-deck">
       <h2 class="title text-left"> Ellos ya están entrenando!!</h2>
-        
-        <div class="li">
-          <img id="img" src="https://randomuser.me/api/portraits/med/women/6.jpg" />
-            <p id="p">andrea sørensen</p>
-        <div>  
-
+        <div class="card-deck" id="get_api"></div>
         <script>
+          function createUser(element) {
+          return document.createElement(element)
+          }
+
+          function append(parent, element) {
+            return parent.appendChild(element);
+          }
+          fetch('https://randomuser.me/api/?results=3&inc=gender,name,nat=es')
+            .then((resp) => resp.json())
+            .then(function (data){
+              let users = data.results;
+              return users.map(function (user){
+                let li = createUser('li'),
+                  img = createUser('img'),
+                  p = createUser('p');
+                img.src = user.picture;
+                p.innerHTML = `${user.name.first} ${user.name.last}`
+                append(li, img);
+                append(li, p);
+                append(document.getElementById('users'), li);
+              })
+            })
+                .catch(function (error){
+                  console.log(error);
+                }); 
         </script>
 
           

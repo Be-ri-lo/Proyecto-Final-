@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
   
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
+    ActiveAdmin.routes(self)
+  
+  devise_for :users, controllers: { registrations: 'users/registrations'}
   
   resources :trainings do
     resources :rateds, except: [:index]
@@ -17,9 +16,9 @@ Rails.application.routes.draw do
   end
   
   resources :users do
-    # collection do
-    #   get 'dashboard'
-    # end 
+    collection do
+       get 'dashboard'
+    end 
     resources :trainings
   end
   

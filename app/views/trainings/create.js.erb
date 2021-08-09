@@ -1,17 +1,26 @@
-var table = document.querySelector("table#places tbody");
-var new_tr = document.createElement("tr");
-new_tr.dataset.id = <%= @place.id %>
-var place_content = '<%= j render "place_detail", place: @place %>'
+var div = document.querySelector("div#training ");
+var new_tr = document.createElement("#tr");
+new_tr.dataset.id = <%= @training.id %>
+var training_content = '<%= j render "training_detail", training: @training %>'
 
-new_tr.innerHTML = place_content
+new_tr.innerHTML = training_content
 table.appendChild(new_tr)
 
 
-var input_text = document.querySelector('[name="place[country]"]')
+var input_text = document.querySelector('[name="training[name]"]')
 input_text.value = ''
 
-var input_text = document.querySelector('[name="place[city]"]')
+var input_text = document.querySelector('[name="training[sport]"]')
 input_text.value = ''
 
-var input_text = document.querySelector('[name="place[location]"]')
+var input_text = document.querySelector('[name="training[level]"]')
+input_text.value = ''
+
+var input_text = document.querySelector('[name="training[date]"]')
+input_text.value = ''
+
+var input_text = document.querySelector('[name="training[user.name]"]')
+input_text.value = ''
+
+var input_text = document.querySelector('[name="training[place_id]"]')
 input_text.value = ''
