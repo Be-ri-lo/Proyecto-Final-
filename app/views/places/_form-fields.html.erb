@@ -10,16 +10,14 @@
     <%= f.label :location %>
     <%= f.text_field :location, class: "form-control" %>
 </div>
- <div class="form-group">
-    <%= f.label :active %>
-    <%= f.check_box :active, class: "form-control" %>
-  </div>
+
 <div class="actions">
     <%= f.submit class: "btn btn-success" %>
 
     <%# NOTE AUTHOR Only load the delete button when editing an author. Otherwise the delete button will appear on the new post view and raise an exception. %>
-    <% if params[:action] == 'edit' && params[:controller] == 'places' %>
-        <%= link_to "Delete #{@place.formatted_name}", place_path(@place), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-    <% end %>
 </div>
 
+
+    <%# <% if params[:action] == 'edit' && params[:controller] == 'places' %>
+        <%# <%= link_to "Delete #{@place.formatted_name}", place_path(@place), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    <%# <% end %> 
