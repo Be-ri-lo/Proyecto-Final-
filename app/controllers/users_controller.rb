@@ -10,9 +10,10 @@ class UsersController < ApplicationController
   
   # GET /users/1 or /users/1.json
   def show
-    @user_group = User.group(:id).count.transform_keys {|key| User.find(key).name}
-    @training_group = Training.group(:user_id).count.transform_keys {|key| User.find(key).name}
-    @training_sport = Training.group(:sport).count
+    @training_sport = current_user.trainings.group(:sport).count
+    @training_group = current_user.trainings.group(:user_id).count.transform_keys {|key| User.find(key).name } #ojo
+    
+    # @training_sport = Training.group(:sport).count
     #@training = current_user.trainings.build if logged_in?
 
   end

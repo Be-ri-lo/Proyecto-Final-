@@ -1,12 +1,6 @@
-Rails.application.routes.draw do
-  
-  devise_for :admin_users, ActiveAdmin::Devise.config
-    ActiveAdmin.routes(self)
-  
-  devise_for :users, controllers: { registrations: 'users/registrations'}
-  
+Rails.application.routes.draw do  
   resources :trainings do
-    resources :rateds, except: [:index]
+    resources :rateds, except: :index
   end
   
   resources :partners
@@ -14,6 +8,11 @@ Rails.application.routes.draw do
   resources :places do
     resources :trainings
   end
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  devise_for :users, controllers: { registration: 'user/registrations' }
   
   resources :users do
     collection do
@@ -21,8 +20,6 @@ Rails.application.routes.draw do
     end 
     resources :trainings
   end
-  
-  
+
   root 'home#index'
-  
 end

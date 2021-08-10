@@ -1,5 +1,5 @@
 
-<%= form_with(model: place, class: 'places_form_with') do |form| %>
+<%= form_with(model: place, class: 'places_form_with', url: "/trainings/create", method: :post, local: false) do |form| %>
   
   <div class="field">
     <%= form.label :country %>
