@@ -1,5 +1,5 @@
 class Training < ApplicationRecord
-  searchkick word_start: [:sport]
+  #searchkick word_start: [:sport]
 
   belongs_to :user
   belongs_to :place
@@ -26,6 +26,21 @@ class Training < ApplicationRecord
     self.sport
   end
 
+  #Pides solicitud de entrenamiento (partner)
+  def apply_training
+     
+  end
+
+  def total_partners
+    self.partners.count
+  end
+
+  def suggest_friends
+    current_friends_id = self.friends.map{|f| f.friend_id}
+    current_friends_id.push(self.id)
+    @suggest = User.where.not(id: current_friends_id)
+  end
+
   # Si el entrenamiento terminó, puedes evaluar
   def concluded?
      self.date < Date.today
@@ -47,16 +62,16 @@ class Training < ApplicationRecord
     !!self.rateds.find{|rate| rate.user_id == user.id}
   end
 
-  def search_data
-    {
-         country: country,
-         city: city,
-         location: location, null: false,
-         sport: sport, null: false,
-         level: level, null: false,
-         date: date
-    }
- end
+  # def search_data
+  #   {
+  #        country: country,
+  #        city: city,
+  #        location: location, null: false,
+  #        sport: sport, null: false,
+  #        level: level, null: false,
+  #        date: date
+  #   }
+  # end
 
   
 

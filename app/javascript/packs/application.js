@@ -24,3 +24,12 @@ document.addEventListener("submit", function (e) {
     places_create(e);
   }
 });
+
+//= require jquery
+//= require jquery-ui
+//= require popper
+//= require bootstrap-sprockets
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require_tree .

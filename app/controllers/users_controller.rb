@@ -3,18 +3,18 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
-    #@users = User.where(id: current_user.id)
+    @users = current_user.trainings.all
     @user = User.new
+
+    @user_pie = current_user.trainings.group(:sport).count
+    @user_line = current_user.trainings.group(:name).count
+
   end
   
   # GET /users/1 or /users/1.json
   def show
-    @training_sport = current_user.trainings.group(:sport).count
-    @training_group = current_user.trainings.group(:user_id).count.transform_keys {|key| User.find(key).name } #ojo
-    
-    # @training_sport = Training.group(:sport).count
-    #@training = current_user.trainings.build if logged_in?
+    @user_sport = current_user.trainings.group(:sport).count
+    @user_group = current_user.trainings.group(:name).count.transform_keys {|key| User.find(key).name } #ojo
 
   end
 

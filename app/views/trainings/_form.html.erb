@@ -1,7 +1,7 @@
-<%= form_with(model: @training) do |form| %>
+<%= form_with(model: @training, local: false) do |form| %>
   <% if @training.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>
+      <h2><%= pluralize(training.errors.count, "error") %> prohibited this training from being saved:</h2>
 
       <ul>
         <% @training.errors.each do |error| %>
@@ -11,46 +11,54 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="row px-3 pb-3">
+    <h6 class="px-0 mb-1"><%= form.label :name %></h6>
+    <%= form.text_field :name, class:"custom-input" %>
   </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
+  <div class="row px-3 pb-3">
+    <h6 class="px-0 mb-1"><%= form.label :date %></h6>
+    <div class="ps-0 custom-select"><%= form.datetime_select :date %></div>
   </div>
 
-  <div class="field">
-    <%= form.label :sport %>
-    <%= form.select :sport, @sports, prompt: "Seleccione una opción" %>
+  <div class="row px-3 pb-3">
+    <div class="col-12 col-md-6">
+      <div class="row me-3 custom-select">
+        <h6 class="px-0 mb-1"><%= form.label :sport %></h6>
+        <%= form.select :sport, @sports, prompt: "Seleccione una opción"%>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="row row me-3 custom-select">
+        <h6 class="px-0 mb-1"><%= form.label :level %></h6>
+        <%= form.select :level, @levels, prompt: "Seleccione una opción"%>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :level %>
-    <%= form.select :level, @levels, prompt: "Seleccione una opción" %>
+  <div class="row px-3 pb-3">
+    <div class="col-12 col-md-6">
+      <div class="row row me-3 custom-select">
+        <h6 class="px-0 mb-1"><%= form.label :place_id %></h6>
+        <%= form.select :place_id, @places, prompt: "Seleccione una opción" %>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="row row me-3"> <!--active storage, preguntar-->
+        <h6 class="px-0 mb-1"><%= form.label :image %></h6>
+        <%= form.file_field :images, multiple: true %>
+      </div>
+    </div>
   </div>
 
-
-  <div class="field">
-    <%= form.label :place_id %>
-    <%= form.select :place_id, @places, prompt: "Seleccione una opción" %>
-  </div>
-
-  <div class="field"> <!--active storage, preguntar-->
-    <%= form.label :image %>
-    <%= form.file_field :images, multiple: true %>
-  </div> 
-
- 
   <%#<p><%= link_to 'Add new place', new_place_path, remote: true %></p>
-   
+
   <%# <div class="field"> <!--Render de ujs de places, para que con un boton se genere un formulario de ubicación nueva.-->
     <%= form.label :place_id %>
-    <%# <%= form.select :place_id, @places, prompt: "Seleccione una opción" %> 
+  <%# <%= form.select :place_id, @places, prompt: "Seleccione una opción" %>
   <%# </div> %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="text-center">
+    <%= form.submit data: { disable_with: 'Creando tu entrenamiento!' }, class: "custom-button" %>
   </div>
 <% end %>

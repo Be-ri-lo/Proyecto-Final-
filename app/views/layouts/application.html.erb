@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>ProyectoFinalFullStack</title>
+  <!--Meta tags-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
   <!--Bootstrap CSS-->
@@ -13,45 +14,42 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Style -->
+    <link rel="stylesheet/aplication.css" href="assets/stylesheets/aplication.css">
   <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300&display=swap" rel="stylesheet">
-  <!-- Custom CSS -->
-    <link rel="stylesheet/aplication.css" href="..stylesheet/aplication.css">
-  <!--LeaFlet, maps-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
-  <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
-  <!--LeaFlet-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
+  <!-- Ionic icons -->
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+  <!--googlemaps-->
+
   </head>
 
-  <body>
+  <body >
+    <!--Navbar-->
     <%= render 'shared/navbar' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%# <p class="notice"><%= notice %>
+    <%# <p class="alert"><%= alert %> 
 
-
-    <%# <% if current_user %>
-      <%# <%= link_to 'Log out', destroy_user_session_path, method: :delete %> 
-    <%# <% else %>
-      <%# <%= link_to 'Log in', new_user_session_path%> 
-    <%# <% end %> 
      <%= yield %> 
+
+     <!--Contacto-->
+    
+      <%= render 'shared/contact' %>
+    
+
+    <!--Follow-->
+    
+      <%= render 'shared/follow' %>
+    
+    <!--Footer-->
     <%= render 'shared/footer' %>
-      <!-- Scroll Reveal -->
+    
+    
+    <!-- Scroll Reveal -->
     <script src="https://unpkg.com/scrollreveal"></script>
     <!--<script src="./javascript/main.js"></script>-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

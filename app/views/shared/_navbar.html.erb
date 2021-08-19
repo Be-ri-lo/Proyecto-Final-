@@ -1,8 +1,8 @@
-<div class="container-fluid p-0">
-  <nav class="row justify-content-between px-4">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light  bg-gradient">
+  <div class="container">
     <div class="col-3 my-auto py-2" >
-      <a href="#" class="logo-btn" role="button">
-        <i class="fas fa-kiwi-bird"></i>
+      <a href="#scrollspyHeading1" class="logo-btn" role="button">
+        <%= image_tag "logo.png", alt: "", width: "30", height: "24" %>
       </a>
     </div>
 
@@ -17,10 +17,10 @@
                   id: 'places_search',
                   class: 'form-control' %>              
                 
-                <div class="col-5 my-auto p-0">
-                  <div class="input-group-btn search-panel">
-                    <%= button_to 'Clear', root_path, class: "btn btn-default" %>
-                    <%= submit_tag 'Search', name: nil, class: "fas fa-search" %>
+                <div class="col-5 my-auto p-2">
+                  <div class="input-group-btn search-panel px-0">
+                    <%= button_to 'Clear', trainings_path, class: "btn btn-default" %>
+                    <%= submit_tag 'Search', name: nil, class: "fas fa-search " %>
                   </div>
                   <%# <button class="search-btn">
                     <i class="fas fa-search"></i>
@@ -39,7 +39,7 @@
       <div class="row justify-content-end">
         <div class="col-2 my-auto p-2">
           <a href="#" class="profile-btn d-flex justify-content-evenly" role="button" id="default">
-            <i>Notificaciones</i>
+            <!--<i>Notificaciones</i>-->
           </a>
         
         </div>
@@ -55,20 +55,21 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-2 custom-shadow border-0" aria-labelledby="defaultDropdown">
             <% if user_signed_in? %>
-              <li><a class="dropdown-item" href="#"><%= link_to 'Perfil', users_path%></a></li>
-              <li><a class="dropdown-item" href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
-              <li><a class="dropdown-item" href="#"><%= link_to 'Trainings', trainings_path %></a></li>
-              <li><a class="dropdown-item" href="#"><%= link_to 'Crear entrenamiento', new_training_path %></a></li>
-              <li><a class="dropdown-item" href="#"><%= link_to 'Buscar entrenamiento', places_path %></a></li>
-              <li><a class="dropdown-item" href="#"><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Perfil', users_path%></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Notificaciones', new_partner_path%></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Trainings', trainings_path %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Crear entrenamiento', new_training_path %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Buscar entrenamiento', places_path %></a></li>
+                <li><a class="dropdown-item" href="#"><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></a></li>                            
             <% else %>
               <li class="p-1"><a href="#"><%= link_to 'Regístrate', new_user_registration_path %></a></li>
               <li class="p-1"><a href="#"><%= link_to 'Iniciar sesión', new_user_session_path %></a></li>
+              <li class="p-1"><a href="#"><%= link_to 'Administrador', new_admin_user_session_path %></a></li>
             <% end %>
           </ul>
         </div>
       </div>
     </div>
-  </nav>
-  <hr>
-</div>
+  </div>
+</nav>

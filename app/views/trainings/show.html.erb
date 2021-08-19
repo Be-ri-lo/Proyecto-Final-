@@ -15,20 +15,29 @@
             <h5 class="card-title"><%= @training.name %></h5>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="fas fa-street-view"></i> <%= @training.place.location %></li>
-            <li class="list-group-item"><i class="fas fa-running"></i> <%= @training.sport %></li>
-            <li class="list-group-item"><i class="fas fa-signal"></i> <%= @training.level %></li>
-            <li class="list-group-item"><i class="far fa-calendar-alt"></i> <%= @training.date.strftime('%d-%m-%y -> %H:%M') %></li>
+            <li class="list-group-item p-3"><i class="icon ion-md-contact lead"></i> <%= @training.user.name%></li>
+            <li class="list-group-item p-3"><i class="fas fa-running lead"></i> <%= @training.sport %></li>
+            <li class="list-group-item p-3"><i class="fas fa-signal lead"></i> <%= @training.level %></li>
+            <li class="list-group-item p-3"><i class="fas fa-street-view lead"></i> <%= @training.place.location %></li>
+              <li class="list-group-item"><i class="far fa-calendar-alt"></i> <%= @training.date.strftime('%d-%m-%y / %H:%M') %></li>
           </ul>
           <hr>
           <div>
-
+          <!--Evaluar-->
             <div class="">
-              <% if @training.concluded? %>
-                <%= render "rateds/form" %>
+              <% if @training.concluded? && @user != current_user %> 
+                <%= form_with(model: @training) do |form| %>
+                  <div class="field">
+                    <%= form.label :rate_from_1_to_5 %>
+                    <%= form.select(:rating, options_for_select([[1, 1],[2, 2],[3, 3],[4, 4],[5, 5]])) %>
+                  </div>
+                  <div class="actions">
+                    <%= form.submit "Evalúa"%>
+                  </div>
+                <% end %>
               <% else %>
                 <div id="error_explanation">
-                  <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>
+                  <h2><%= pluralize(@training.errors.count, "error") %> No puedes evaluar:</h2>
                   <ul>
                     <% @training.errors.each do |error| %>
                       <li><%= error.full_message %></li>
@@ -36,12 +45,14 @@
                   </ul>
                 </div>              
               <% end %>
+              Ranking:<br>
+                <%= @training.average_stars.times do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                <% end %>
             </div>
-            Calificacion: <%= @training.average_stars.times do %> <!--Falta estrellas, pero usaré fetch para que se genere el select de estrellas.-->
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-              </svg>
-            <% end %><br><br>
+            
           </div>
           <div class="card-body">
             <a href="#" class="card-link">
@@ -57,68 +68,31 @@
     
   <!--der-->
   <div class="col-12 col-md-6 bg-secondary">
-    <div id="mapid"></div>
-      <h1>Mapa</h1>
-      <script>
-        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-          maxZoom: 18,
-          id: 'mapbox/streets-v11',
-          tileSize: 512,
-          zoomOffset: -1,
-          accessToken: 'your.mapbox.access.token'
-        }).addTo(mymap);
-      </script>
-    
-    
+    <img src="https://maps.google.com/maps/api/staticmap?center=Santiago,IL&zoom=8&size=512x512&maptype=roadmap&sensor=false" alt="Static Map of Chicago, Illinois">
   </div>
+
+  <script>
+                    fetch('https://randomuser.me/api/?results=1&inc=gender,name,nat=es')
+                    .then((response) => response.json())
+                    .then(function(data){
+                        const users = data.results.map(function(user){
+                            const node = document.createElement('div')
+                            node.className = 'col'
+                            node.innerHTML = ` 
+                                  <div class="col p-3 md-4 user-profile">
+                                    <img id="avatar" src="https://randomuser.me/api/portraits/med/women/8.jpg" />
+                                    <p id="fullname">${user.name.first} ${user.name.last}</p>
+                                  </div>`
+                                  
+                            return node
+                        })
+                        const section = document.querySelector('.random')
+                        users.forEach((user) => section.appendChild(user))
+                    })
+                    .catch((error) => console.error(error))
+                </script>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="https://a0.muscache.com/im/pictures/lombard/MtTemplate-1490129-media_library/original/ecad1816-34f4-4a18-9f0e-1944a2fc7a89.jpeg?im_w=320" class="card-img-top" alt="nieve">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><%= @training.name %></h5>
-      </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fas fa-street-view"></i><%= @training.place.location %></li>
-          <li class="list-group-item"><%= @training.sport %></li>
-          <li class="list-group-item"><%= @training.level %></li>
-          <li class="list-group-item"><%= @training.date %></li>
-        </ul>
-      <div class="card-body">
-        <a href="#" class="card-link">
-          <% if user_signed_in? && @training.user == current_user %>
-            <%= link_to 'Edit', edit_training_path(@training) %> |
-          <% end %>   
-        </a>
-      </div>
-    </div>
-  </div>
-</div>-->
 
 <%= link_to 'Back', trainings_path %>
 

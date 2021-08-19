@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
   <strong>Entrenamientos:</strong>
   <%= @user.trainings.join(', ') %>
 </p>
@@ -15,8 +20,8 @@
   <%= @user.image %>
 </p>
 
-<%= pie_chart @training_sport, legend: "bottom" %>
-<%= line_chart @training_group, legend: ""%>
+<%= pie_chart @user_sport, legend: "bottom" %>
+<%= line_chart @user_group, legend: ""%>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

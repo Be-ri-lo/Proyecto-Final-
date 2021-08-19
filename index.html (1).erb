@@ -1,0 +1,134 @@
+<div class="content text-center">
+  <!--Llamado a registrarse-->
+  <div class="showcase custom-shadow">
+    <div class="showcase-text">
+      <h1>¿Aún no eres parte?</h1>
+      <h3>¡Atrévete a participar!</h3>
+      <%= link_to 'Únete <i class="fas fa-chevron-right custom-link"></i>'.html_safe, new_user_registration_path %>
+    </div>
+  </div>
+
+  <!--Cómo crear un entrenamiento-->
+  <section class="cards-banner-one">
+    <h2>Pasos para crear un entrenamiento</h2>
+    <div class="news-cards row">
+      <div class="col-12 col-md-4">
+        <i class="far fa-hand-point-up"></i>
+        <h3>Primer paso</h3>
+        <p class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <!--<a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>-->
+      </div>
+
+      <div class="col-12 col-md-4">
+        <i class="far fa-hand-peace"></i>
+        <h3>Segundo paso</h3>
+        <p class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <!--<a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>-->
+      </div>
+      <div class="col-12 col-md-4">
+        <i class="far fa-thumbs-up"></i>
+        <h3>Tercer Paso</h3>
+        <p class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam dolore fugit esse corporis nesciunt minima
+          doloremque modi mollitia rerum, similique optio eligendi itaque amet qui ullam vel incidunt asperiores fuga?
+        </p>
+        <!--<a href="#">Learn More <i class="fas fa-angle-double-right"></i></a>-->
+      </div>
+    </div>
+  </section>
+  <hr>
+  <!--Buscar entrenamiento-->
+  <div class="cards-banner-two">
+    <h2>¿No sabes cuál elegir?</h2>
+    <h3>¡No importa! ¡nosotros te ayudamos!</h3>
+    <a href="#"><%= link_to 'Explora', trainings_path %> </a>
+  </div>
+  <hr>
+
+  <!--Gente que ya lo usa RANDOM USER API-->
+  <!-- Card Banner 1-->
+  <section class="cards-deck">
+    <h2 class="title text-left">¡¡Ellos ya están entrenando!!</h2>
+    <div class="card-deck" id="get_api"></div>
+    <script>
+        function createUser(element) {
+            return document.createElement(element)
+        }
+
+        function append(parent, element) {
+            return parent.appendChild(element);
+        }
+        fetch('https://randomuser.me/api/?results=3&inc=gender,name,nat=es')
+            .then((resp) => resp.json())
+            .then(function (data){
+                let users = data.results;
+                return users.map(function (user){
+                    let li = createUser('li'),
+                        img = createUser('img'),
+                        p = createUser('p');
+                    img.src = user.picture;
+                    p.innerHTML = `${user.name.first} ${user.name.last}`
+                    append(li, img);
+                    append(li, p);
+                    append(document.getElementById('users'), li);
+                })
+            })
+            .catch(function (error){
+                console.log(error);
+            });
+    </script>
+
+
+
+
+
+    <%# <div id="username">
+            goldendog885
+          </div>
+            <div class="description">
+              <div>Email: <span id="email">andrea.sørensen@example.com</span></div>
+              <div>City: <span id="city">nr åby</span></div>
+          </div> %>
+    <%# <div class="footer">
+            <button id="btn">Next User!</button>
+          </div> %>
+    <%#</div>
+
+        <%# <div class="row user-profile">
+          <img id="avatar" src="https://randomuser.me/api/portraits/med/women/6.jpg" />
+            <p id="fullname">andrea sørensen</p>
+          <%# <div id="username">
+            goldendog885
+          </div>
+            <div class="description">
+              <div>Email: <span id="email">andrea.sørensen@example.com</span></div>
+              <div>City: <span id="city">nr åby</span></div>
+          </div> %>
+    <%# <div class="footer">
+            <button id="btn">Next User!</button>
+          </div> %>
+    <%#</div> %>
+
+
+    <%= render 'shared/carousel' %>
+
+    <!-- Follow -->
+    <section class="social">
+      <p class="mb-5">Síguenos</p>
+      <div class="links">
+        <a href="https://facebook.com">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://instagram.com">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </section>
+  </section>
+</div>

@@ -12,13 +12,13 @@ class TrainingsController < ApplicationController
     @trainings = Training.with_attached_images.all
     @training = Training.new
 
-    search = params[:sport].present? ? params[:sport] : nil
-      @trainings = if search
-        Training.where("sport LIKE ? OR level LIKE? OR date LIKE?", "%#{search}%", "%#{search}%", "%#{search}%")
-        #Place.search(search)
-      else
-        Training.all
-      end
+    # search = params[:sport].present? ? params[:sport] : nil
+    #   @trainings = if search
+    #     Training.where("sport LIKE ? OR level LIKE? OR date LIKE?", "%#{search}%", "%#{search}%", "%#{search}%")
+    #     #Place.search(search)
+    #   else
+    #     Training.all
+    #   end
   end
 
   # GET /trainings/1 or /trainings/1.json

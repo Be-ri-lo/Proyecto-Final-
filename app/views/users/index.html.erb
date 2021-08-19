@@ -1,40 +1,94 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+  <div class="d-flex" id="">
+    <!-- Sidebar -->
+    <div id="sidebar-container" class="bg-primary">
+      <div class="logo">
+        <h4 class="text-light font-weight-bold mb-0">Partner</h4>
+      </div>
+      <div class="menu">
+        <ul class="list-group list-group-flush">
+          <li class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>  <%= current_user.name %></li>
+          <li class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>  <%= current_user.email %></li>
+          <li class="d-block text-light p-3 border-0"><i class="icon ion-md-apps lead mr-2"></i>  <%= link_to 'Nuevo entrenamiento', new_training_path, class: "d-block text-light p-3 border-0" %></li>
+          <li class="d-block text-light p-3 border-0"><i class="icon ion-md-person lead mr-2"></i> <%= current_user.total_partners %></li>
+          <li class="d-block text-light p-3 border-0"><i class="icon ion-md-settings lead mr-2"></i>  <%= link_to 'Edita tu perfil', edit_user_registration_path, class: "d-block text-light p-3 border-0"  %></li>
+        </ul>
+          <%= pie_chart @user_pie, legend: "bottom"%>
+          <%= line_chart @user_line, legend: "bottom"%>
+      </div>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-       <th>Entrenamientos</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <!-- Page Content -->
+    <div id="content" class="bg-grey w-100">
 
-  <tbody>
-  
-  <% if user_signed_in?  %>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.image %></td>
-        <td><%= user.trainings.join(',')%></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  <% else %>
-    <li class="p-1"><a href="#"><%= link_to 'Regístrate', new_user_registration_path %></a></li>
-    <li class="p-1"><a href="#"><%= link_to 'Iniciar sesión', new_user_session_path %></a></li>
-  <% end %>
+      <section class="bg-light py-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9 col-md-8">
+              <h1 class="font-weight-bold mb-0">Bienvenido <%= current_user.name %></h1>
+              <p class="lead text-muted">Revisa la última información</p>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                  <div class="mx-auto">
+                    <h6 class="text-muted">Has creado <%= current_user.trainings.count %> entrenamientos!</h6>
+                    <h3 class="font-weight-bold">
+                      <% if current_user.trainings.count >= 6 %>
+                        <p> Eres un gran Atleta!</p>
+                      <% else %>
+                        <p> Puedes crear más!</p>
+                      <% end %></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--Entrenamientos realizados -->
+            <div id="trainings" class=" card-body row row-cols-1 row-cols-md-3 g-4">
+              <% current_user.trainings.reverse.each do |training| %>
+                <div id="tr" class="col">
+                  <div class="card h-100">
+                    <% if training.images.any? %>
+                      <%= image_tag training.images.first.variant(resize: "100x100").processed %> <!--Chequear!!-->
+                    <% end %>
+                    <div class="card-body">
+                      <h5 class="card-title"><%= training.name %></h5>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="fas fa-street-view"></i> <%= training.place.location %></li>
+                        <li class="list-group-item"><i class="fas fa-running"></i> <%= training.sport %></li>
+                        <li class="list-group-item"><i class="fas fa-signal"></i> <%= training.level %></li>
+                        <li class="list-group-item"><i class="far fa-calendar-alt"></i> <%= training.date.strftime('%d-%m-%y -> %H:%M') %></li>
+                      </ul>   
+                    </div>
+                  </div>
+                </div>
+              <% end %>  
+            </div>
+            <!--Partners-->
+            <div class="container p-2">
+              <div class="row">
+                <div class="col-12">  
+                  <div class="col-12 border border-secondary rounded">
+                    <ul class="list-group p-2">
+                      <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-info">
+                        Partners
+                      </li>
+                      <% current_user.suggest_partners.each do |user|%>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <%= user.name %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </section>
+    </div>
+  </div>     
 
-  </tbody>
-</table>
 
-<br>
 
-<%= pie_chart @user_group, legend: "bottom" %>
 
-<%= link_to 'New User', new_user_path %>

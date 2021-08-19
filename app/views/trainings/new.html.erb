@@ -1,11 +1,5 @@
-<%# <h1>New Training</h1>
-<!--div class="row"-->
-<%= render 'form', training: @training %>
+<h1>Nuevo Entrenamiento</h1>
 
-
-
-
-<%# <%= link_to 'Back', trainings_path %> 
 <div class="row">
     <div class="col-md-8 mb-3">
         <div class="card">
@@ -20,10 +14,9 @@
     <div class="col-md-4">
         <div class="card">
             <div class="card-header">
-                <h3 class="mb-0">No está tu lugar! Agregalo!</h3>
+                <h3 class="mb-0">No está tu lugar! Agrégalo!</h3>
             </div>        
             <div class="card-body fields">
-                <%# NOTE AUTHOR STEP 3: Load the author form %>
                 <%= render "places/form-with", place: @place %>
             </div>
         </div>

@@ -1,59 +1,71 @@
 <h1 class="training">Entrenamientos</h1>
  
   <div class="col-xs-4 col-sm-2 col-md-2 right"> 
-    <% if user_signed_in? && @training.user == current_user %>
+    <% if user_signed_in? == current_user %>
       <%= link_to 'New Training', new_training_path, class: "btn btn-info btn-sm rigth" %>  
     <% end %>  
   </div>
 
-  <div id="trainings" class="row row-cols-1 row-cols-md-3 g-4">
+  <div id="trainings" class="row row-cols-1 row-cols-md-3 g-5">
     <% @trainings.reverse.each do |training| %> <!--reverse.each: da vuelta el orden... a,b,c sería c,b,a-->
 
       <div id="tr" class="col">
         <div class="card h-100">
           <% if training.images.any? %>
-          <%= image_tag training.images.first.variant(resize: "100x100").processed %> <!--Chequear!!-->
+            <%= image_tag training.images.first.variant(resize: "100x100").processed %> <!--Chequear!!-->
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= training.name %></h5>
           </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><i class="fas fa-street-view"></i> <%= training.place.location %></li>
+            <ul class="list-group list-group-flush card-body">
+              <li class="list-group-item"><i class="icon ion-md-contact"></i> <%= training.user.name%></li>
               <li class="list-group-item"><i class="fas fa-running"></i> <%= training.sport %></li>
               <li class="list-group-item"><i class="fas fa-signal"></i> <%= training.level %></li>
-              <li class="list-group-item"><i class="far fa-calendar-alt"></i> <%= training.date.strftime('%d-%m-%y -> %H:%M') %></li>
+              <li class="list-group-item"><i class="fas fa-street-view"></i> <%= training.place.location %></li>
+              <li class="list-group-item"><i class="far fa-calendar-alt"></i> <%= training.date.strftime('%d-%m-%y / %H:%M') %></li>
             </ul>
           <div class="card-body">
             <!--Rated-->
             <% if user_signed_in?%>
-              <td id='td-style'><% if training.concluded? %>
-                <td><%=link_to 'Calificar', training %></td>
-                  <% if training.rated?(current_user)%> 
-                    <td><%= link_to 'Calificar', training_rateds_path(training) %></td>
-                  <% end %>
-              <% else %>
-                  <%= '' %>
-              <% end %></td>
-            <% end %>
-            <% if user_signed_in? %>
               <a href="#" class="card-link">
                 <%= link_to 'Mirar', training %>
-                <%= link_to 'Quiero Entrenar', training %> <!--Este link es para pedir solicitud de entrenamiento--> 
+                 <!--Este link es para pedir solicitud de entrenamiento--> 
+                <tbody class="text-center">
+                  <tr>
+                  <% @trainings.each do |training| %>
+                    <% if user_signed_in? %>
+                        <% if current_user.partners.pluck(:partner_id).include?(training.user.id) && current_user.id == training.user.id %>
+                          <%= button_to 'Entrenar', training_partner_path(training), method: :post %>
+                        <% end %>
+                    <% else %>
+                        <%= "¡Conectate para entrenar!" %>
+                    <% end %>
+                    </td>
+                  <% end %>
+                </tbody>
               </a>
-            <% end %>
-            <% if user_signed_in? && @training.user == current_user %>
-              <a href="#" class="card-link">
-                <%= link_to 'Editar', edit_training_path(@training) %> |
-              </a>
-            <% end %>   
+              <td id='td-style'>
+                <% if training.concluded? %>
+                  <td><%=link_to 'Calificar', training %></td>
+                    <% if training.rated?(current_user)%> 
+                      <td><%= link_to 'Calificar', training_rateds_path(training) %></td>
+                    <% end %>
+                <% end %></td>
+              
+              <% if @training.user == current_user %>
+                <a href="#" class="card-link">
+                  <%= link_to 'Editar', edit_training_path(@training) %> |
+                </a>
+              <% end %> 
+            <% end %>    
           </div>
         </div>
       </div>
     <% end %>  
   </div>
 
-
+<%# 
 <div style="width: 500px">
-  <%= pie_chart @training_sport, legend: "bottom" %><br>
-  <%= line_chart @training_group, legend: ""%>
-</div>
+  <%= pie_chart @training_sport, legend: "bottom" %>
+  <%# <%= line_chart @training_group, legend: ""%> 
+<%# </div> %>
