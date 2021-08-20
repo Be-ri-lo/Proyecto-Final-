@@ -68,4 +68,4 @@ gem 'chartkick'
 gem 'groupdate'
 gem "audited", "~> 4.9"
 gem 'kaminari'
-gem 'geocoder', '1.4'
+#gem 'geocoder', '1.4'

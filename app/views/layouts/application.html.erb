@@ -13,6 +13,12 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <!--googlemaps-->
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDKo32oRZX1c3LtHxc0hXodf24IXpFRtbo&libraries=places&callback=dispatchMapsEvent",
+                            async: true,
+                            defer: true,
+                            "data-turbolinks-eval": false %>  
+    
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
   <!-- Style -->
     <link rel="stylesheet/aplication.css" href="assets/stylesheets/aplication.css">
@@ -24,7 +30,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300&display=swap" rel="stylesheet">
   <!-- Ionic icons -->
     <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-  <!--googlemaps-->
+  
 
   </head>
 

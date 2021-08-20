@@ -34,4 +34,11 @@ document.addEventListener("submit", function (e) {
 //= require turbolinks
 //= require_tree .
 
-import "controllers"
+import "controllers";
+
+window.dispatchMapsEvent = function (...args) {
+  const event = document.createEvent("Events");
+  event.initEvent("google-maps-callback", true, true);
+  event.args = args;
+  window.dispatchEvent(event);
+};

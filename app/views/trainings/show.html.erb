@@ -1,7 +1,7 @@
 <div class="row p-5 mt-5">
   <!--izq-->
-  <div class="col-12 col-md-6  ">
-    <div class="card mb-3 mx-auto" style="max-width: 540px;">
+  <div class="col-6 col-md-6  ">
+    <div class="card mb-3 mx-auto custom-shadow" style="max-width: 540px;">
       <div class="row g-0">
         <div class=" img col-12">
         <% if @training.images.any? %>
@@ -68,49 +68,11 @@
     
   <!--der-->
 
-  <div class="row">
-    <div id="map" style="width: 100%; height: 400px"></div>
-
-    <script src="https://maps.googleapis.com/maps/api/js/&key=AIzaSyDMpNrDZDtAqlja950Cee2DZtV_sa4I6KY"></script>
-    <script>
-      function initialize() {
-        var show = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
-        var map = new google.maps.Map(document.getElementById("map"), {
-          center: location,
-          zoom: 14
-        });
-      }
-
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-  
+  <div class="col-12 col-md-6">
+    <p>
+      <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=700x700&center=#{@place.latitude},#{@place.longitude}&key=AIzaSyDKo32oRZX1c3LtHxc0hXodf24IXpFRtbo", alt: "Map" %> 
+    </p>  
   </div>
-  <%# <div class="col-12 col-md-6 bg-secondary">
-    <img src="https://maps.google.com/maps/api/staticmap?center=Santiago,IL&zoom=8&size=512x512&maptype=roadmap&sensor=false" alt="Static Map of Chicago, Illinois">
-  </div>
-
-  <script>
-                    fetch('https://randomuser.me/api/?results=1&inc=gender,name,nat=es')
-                    .then((response) => response.json())
-                    .then(function(data){
-                        const users = data.results.map(function(user){
-                            const node = document.createElement('div')
-                            node.className = 'col'
-                            node.innerHTML = ` 
-                                  <div class="col p-3 md-4 user-profile">
-                                    <img id="avatar" src="https://randomuser.me/api/portraits/med/women/8.jpg" />
-                                    <p id="fullname">${user.name.first} ${user.name.last}</p>
-                                  </div>`
-                                  
-                            return node
-                        })
-                        const section = document.querySelector('.random')
-                        users.forEach((user) => section.appendChild(user))
-                    })
-                    .catch((error) => console.error(error))
-                </script>
-
-</div> %>
 
 <%= link_to 'Back', trainings_path %>
 

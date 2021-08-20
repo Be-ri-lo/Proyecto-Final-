@@ -72,14 +72,10 @@ class PlacesController < ApplicationController
 
   # DELETE /places/1 or /places/1.json
   def destroy
-    @place.active = false
-    
+    @place.destroy
     respond_to do |format|
-      if @place.save
-        format.html { redirect_to places_url, notice: "Place was successfully destroyed." }
-        format.json { head :no_content }
-        format.js
-      end
+      format.html { redirect_to places_url, notice: 'Place was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

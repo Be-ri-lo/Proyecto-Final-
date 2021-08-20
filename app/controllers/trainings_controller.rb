@@ -8,7 +8,7 @@ class TrainingsController < ApplicationController
     @training_group = Training.group(:user_id).count.transform_keys {|key| User.find(key).name}
     @training_sport = Training.group(:sport).count
 
-    @trainings = Training.with_attached_images.all.page(params[:page])
+    @trainings = Training.with_attached_images.all.order('date ASC').page(params[:page])
     @training = Training.new
   end
 

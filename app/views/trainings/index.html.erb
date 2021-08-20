@@ -6,13 +6,13 @@
     <% end %>  
   </div>
 
-  <div id="trainings" class="row row-cols-1 row-cols-md-3 g-5">
+  <div id="trainings" class="row row-cols-1 row-cols-md-3 g-5 m-5" style="margin-top:20px">
     <% @trainings.reverse.each do |training| %> <!--reverse.each: da vuelta el orden... a,b,c sería c,b,a-->
 
-      <div id="tr" class="col">
-        <div class="card h-100">
+      <div id="tr" class="col custom-shadow card-training" >
+        <div class="card h-100 ">
           <% if training.images.any? %>
-            <%= image_tag training.images.first.variant(resize: "100x100").processed %> <!--Chequear!!-->
+            <%= image_tag training.images.first.variant(resize: "535x535").processed %> <!--Chequear!!-->
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= training.name %></h5>

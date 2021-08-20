@@ -3,13 +3,13 @@
   <div class="showcase custom-shadow mb-5">
     <div class="showcase-text m-5">
       <h1 class="showcase-text mt-5 pt-5">¿Aún no eres parte?</h1>
-      <h3 class="showcase-text mt-5 pt-5">¡Atrévete a participar!</h3>
-      <%= link_to 'Únete <i class="fas fa-chevron-right custom-link"></i>'.html_safe, new_user_registration_path, class: "showcase-text"  %>
+      <h2 class="showcase-text m-auto pt-5">¡Atrévete a participar!</h2><br><br><br>
+      <h3><a href="#"><%= link_to 'Únete'.html_safe, new_user_registration_path, class: "showcase-text mx-5 px-5" %></a></h3>
     </div>
   </div>
-
+ 
   <!--Cómo crear un entrenamiento-->
-  <section class="cards-banner-one text-center title1 p-5 m-0">
+  <section class="cards-banner-one text-center title1 p-5 m-0 custom-shadow">
     <h2 class="pb-5 m-0 title1">Pasos para crear un entrenamiento</h2>
     <div id="step" class="news-cards row">
       <div class="col-12 col-md-6 icon1">
@@ -40,106 +40,51 @@
   </section>
 
   <!--Buscar entrenamiento-->
-  <div class="row cards-banner-two text-center bg-light white">
-    <h2>¿No sabes cuál elegir?</h2>
+  <div class="row cards-banner-two text-center bg-secundary white custom-shadow">
+    <h2 class="p-5 m-0 title1">¿No sabes cuál elegir?</h2>
     <h3><a href="#"><%= link_to 'Explora', trainings_path %> </a></h3>
       <div class="container col-sm-9  text-center">
         <%= image_tag "binoculares.png", class: "m-3 p-3", alt: "", width: "200", height: "200" %>
         <%= image_tag "corredora.png", class: "m-3 p-3", alt: "", width: "200", height: "200" %>
         <%= image_tag "kayak.png", class: "m-3 p-3", alt: "", width: "200", height: "200" %>
-        <%= image_tag "roller.png", class: "m-3 p-3", alt: "", width: "200", height: "200" %>
+        <%= image_tag "roller1.png", class: "m-3 p-3", alt: "", width: "200", height: "200" %>
         <%= image_tag "futbol.png", class: "m-3 p-3", alt: "", width: "200", height: "200" %>
         <%= image_tag "surf.png", class: "m-3 p-3", alt: "", width: "200", height: "200" %>
       </div>  
   </div>
-  <hr>
-
-    <!--Random user API-->
+  
+  <!--Random user API-->
     
-    <section class="container random">
-      <h2 class="title text-left"> Ellos ya están entrenando!!</h2>
-        <div class="container">
-          <div class="row">            
-            
-            <!--User 1-->
-          
-                  <script>
-                    fetch('https://randomuser.me/api/?results=1&inc=gender,name,nat=es')
-                    .then((response) => response.json())
-                    .then(function(data){
-                        const users = data.results.map(function(user){
-                            const node = document.createElement('div')
-                            node.className = 'col'
-                            node.innerHTML = ` 
-                                  <div class="col p-3 md-4 user-profile">
-                                  <img id="avatar" src="https://randomuser.me/api/portraits/med/men/5.jpg" />
-                                  <p id="fullname">${user.name.first} ${user.name.last}</p>
-                                </div>`
-                                
-                            
-                            return node
-                        })
-                        const section = document.querySelector('.random')
-                        users.forEach((user) => section.appendChild(user))
-                    })
-                    .catch((error) => console.error(error))
-                </script>
-              
-          
-
-            <!--User 2-->
-            
-                <script>
-                  fetch('https://randomuser.me/api/?results=1&inc=gender,name,nat=es')
-                  .then((response) => response.json())
-                  .then(function(data){
-                      const users = data.results.map(function(user){
-                          const node = document.createElement('div')
-                          node.className = 'col'
-                          node.innerHTML = ` 
-                                <div class="col p-3 md-4 user-profile">
-                                  <img id="avatar" src="https://randomuser.me/api/portraits/med/men/8.jpg" />
-                                  <p id="fullname">${user.name.first} ${user.name.last}</p>
-                                </div>`
-                                
-                          return node
-                      })
-                      const section = document.querySelector('.random')
-                      users.forEach((user) => section.appendChild(user))
-                  })
-                  .catch((error) => console.error(error))
-                </script>
-              
-
-            <!--User 3-->
-                <script>
-                  fetch('https://randomuser.me/api/?results=1&inc=gender,name,nat=es')
-                  .then((response) => response.json())
-                  .then(function(data){
-                      const users = data.results.map(function(user){
-                          const node = document.createElement('div')
-                          node.className = 'col'
-                          node.innerHTML = ` 
-                                <div class="col p-3 md-4 user-profile">
-                                  <img id="avatar" src="https://randomuser.me/api/portraits/med/women/10.jpg" />
-                                  <p id="fullname">${user.name.first} ${user.name.last}</p>
-                                </div>`
-                                
-                          return node
-                      })
-                      const section = document.querySelector('.random')
-                      users.forEach((user) => section.appendChild(user))
-                  })
-                  .catch((error) => console.error(error))
-                </script>
-          </div>
-        </div>
-    </section>
+  <%# <section class="container random col-6 row"> %>
+    <div class="random container-fluid api-container custom-shadow">
+      <h2 class="p-5 mx-5 pt-4 p-0 title1 text-left"> Ellos ya están entrenando!!</h2>
+        <div class="col-6">
+          <div id="random-user" class=" text-center"></div>
+          <!--User 1-->
+            <script>
+              fetch('https://randomuser.me/api/')
+              .then(response => response.json())
+              .then(data => {
+                const user = data.results[0]
+                let element = document.getElementById('random-user')
+                element.innerHTML = `
+                              <div class="container px-2 p-5 m-5">
+                                <img src="${user.picture.large}"/>
+                                <h3 class="pt-5"> ${user.name.first} ${user.name.last} </h3>
+                                <h4> ${user.location.city}</h4>        
+                              </div>`
+              }); 
+            </script>
+            <div class="text-center">
+              <%= link_to 'Otros usuarios', root_path %>
+            </div>
+        </div>   
+    </div>  
+  <%# </section> %>
 
     <!--Carrousel-->      
-    <section>
+    <section class="custom-shadow">
       <%= render 'shared/carousel' %>
     </section>
-
   </section>
 </div>

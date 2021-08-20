@@ -1,27 +1,27 @@
 var div = document.querySelector("div#training");
 console.log(div)
-// var new_tr = document.createElement("#tr");
-// new_tr.dataset.id = <%#= @training.id %>
-// var training_content = '<%#= j render "training_detail", training: @training %>'
+var new_tr = document.createElement("#ul");
+new_tr.dataset.id = <%= @training.id %>
+var training_content = '<%= j render "training_detail", training: @training %>'
 
-// new_tr.innerHTML = training_content
-// table.appendChild(new_tr)
+new_tr.innerHTML = training_content
+table.appendChild(new_tr)
 
 
-// var input_text = document.querySelector('[name="training[name]"]')
-// input_text.value = ''
+var input_text = document.querySelector('[name="training[name]"]')
+input_text.value = ''
 
-// var input_text = document.querySelector('[name="training[sport]"]')
-// input_text.value = ''
+var input_text = document.querySelector('[name="training[sport]"]')
+input_text.value = ''
 
-// var input_text = document.querySelector('[name="training[level]"]')
-// input_text.value = ''
+var input_text = document.querySelector('[name="training[level]"]')
+input_text.value = ''
 
-// var input_text = document.querySelector('[name="training[date]"]')
-// input_text.value = ''
+var input_text = document.querySelector('[name="training[date]"]')
+input_text.value = ''
 
-// var input_text = document.querySelector('[name="training[user.name]"]')
-// input_text.value = ''
+var input_text = document.querySelector('[name="training[user.name]"]')
+input_text.value = ''
 
-// var input_text = document.querySelector('[name="training[place_id]"]')
-// input_text.value = ''
+var input_text = document.querySelector('[name="training[place_id]"]')
+input_text.value = ''

@@ -6,24 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 
 places = [
-    { country: 'Chile', city: 'Santiago', location: 'Parque Panul'},
-    { country: 'Chile', city: 'Valparaiso', location: 'Jardín Botánico'},
-    { country: 'Chile', city: 'Santiago', location: 'Parque Bicentenario'},
-    { country: 'Chile', city: 'Santiago', location: 'Ñuñoa'},
-    { country: 'Chile', city: 'Puerto Natales', location: 'Torres del Paine'},
-    { country: 'Chile', city: 'Santiago', location: 'Parque Panul'},
-    { country: 'Chile', city: 'Iquique', location: 'Playa Cabancha'},
-    { country: 'Chile', city: 'Santiago', location: 'Cerro San Cristobal'},
-    { country: 'Chile', city: 'Santiago', location: 'Cualquier lugar'}
+    { country: 'Chile', city: 'Santiago', location: 'Parque Panul', latitude: '-33.3152', longitude: '-70.3156'},
+    { country: 'Chile', city: 'Valparaiso', location: 'Jardín Botánico', latitude: '-33.044999', longitude: '-71.501944'},
+    { country: 'Chile', city: 'Santiago', location: 'Parque Bicentenario', latitude: '-33.40057595', longitude: '-70.6024464766479'},
+    { country: 'Chile', city: 'Santiago', location: 'Ñuñoa', latitude: '-33.4547302', longitude: '-70.5936269495485'},
+    { country: 'Chile', city: 'Puerto Natales', location: 'Torres del Paine', latitude: '-50.9423262', longitude: '-73.4067879'},
+    { country: 'Chile', city: 'Santiago', location: 'Parque O´higgins', latitude: '-33.4642907', longitude: '-70.6603899388084'},
+    { country: 'Chile', city: 'Iquique', location: 'Playa Cabancha', latitude: '-20.2307033', longitude: '-70.1356692'},
+    { country: 'Chile', city: 'Santiago', location: 'Cerro San Cristobal', latitude: '-33.4202404', longitude: '-70.6313749'},
+    { country: 'Chile', city: 'Pichilemu', location: 'Punta de Lobos', latitude: '-34.4292749', longitude: '-72.0375683'}
 ]
 
 places_arr = places.map do |place|
     place = Place.create!(country: place[:country], 
                           city: place[:city], 
-                          location: place[:location])
+                          location: place[:location],
+                          latitude: place[:latitude],
+                          longitude: place[:longitude])
     puts "Se ha creado el lugar: #{place.location}"
 
     place
@@ -38,6 +41,7 @@ end
 
     10.times do
         training = user.trainings.create!(
+            image: Training.images.file.attachment(File.open("app/assets/images/deportes"))
             name: Faker::Team.sport, 
             sport: Training.sports.keys.sample, 
             level: Training.levels.keys.sample,
@@ -48,5 +52,3 @@ end
         puts "Creando entrenos: #{training.name}"
     end
 end
-
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

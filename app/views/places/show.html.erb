@@ -16,6 +16,20 @@
 </p>
 
 <p>
+  <strong>Latitud:</strong>
+  <%= @place.latitude %>
+</p>
+
+<p>
+  <strong>Longitud:</strong>
+  <%= @place.longitude %>
+</p>
+
+<p>
+  <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=400x300&center=#{@place.latitude},#{@place.longitude}&key=AIzaSyDKo32oRZX1c3LtHxc0hXodf24IXpFRtbo", alt: "Map" %> 
+</p>
+
+<p>
   <strong>Active:</strong>
   <%= @place.active %>
 </p>
