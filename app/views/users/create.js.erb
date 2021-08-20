@@ -1,0 +1,14 @@
+var table = document.querySelector('table#users tbody')
+var new_tr = document.createElement('tr')
+new_tr.dataset.id = <%= @user.id %>
+var user_content = '<%= j render "user_detail", user: @user %>'
+
+new_tr.innerHTML = user_content
+table.appendChild(new_tr)
+
+
+var input_title = document.querySelector('[name="user[name]"]')
+input_title.value = ''
+
+var input_content = document.querySelector('[name="user[image]"]')
+input_content.value = ''

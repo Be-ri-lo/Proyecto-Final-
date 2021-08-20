@@ -1,7 +1,6 @@
 class TrainingsController < ApplicationController
   before_action :set_training, only: %i[ show edit update destroy ]
   skip_before_action :authenticate_user! 
-  before_action :set_current_training, only:[:rated]
   before_action :set_sports, :set_levels, :set_places, only: %i[new edit]  
   
   # GET /trainings or /trainings.json
@@ -9,30 +8,20 @@ class TrainingsController < ApplicationController
     @training_group = Training.group(:user_id).count.transform_keys {|key| User.find(key).name}
     @training_sport = Training.group(:sport).count
 
-    @trainings = Training.with_attached_images.all
+    @trainings = Training.with_attached_images.all.page(params[:page])
     @training = Training.new
-
-    # search = params[:sport].present? ? params[:sport] : nil
-    #   @trainings = if search
-    #     Training.where("sport LIKE ? OR level LIKE? OR date LIKE?", "%#{search}%", "%#{search}%", "%#{search}%")
-    #     #Place.search(search)
-    #   else
-    #     Training.all
-    #   end
   end
 
   # GET /trainings/1 or /trainings/1.json
   def show
     @training = Training.find(params[:id])
     @place = Place.new
-    
   end
 
   # GET /trainings/new
   def new
     @training = current_user.trainings.build 
-    
-    #format.html { redirect_to @home, notice: "Antes de crear un entrenamiento, debes registrarte"}  
+    @trainings = Training.all
   end
 
   # GET /trainings/1/edit
@@ -80,22 +69,11 @@ class TrainingsController < ApplicationController
   #   redirect_to root_path, notice: "Quiero entrenar contigo!"
   # end
 
-  def rate
-    @training = Training.all.find(params[:id])
-    Rate.create(user_id: current_user.id, training_id: @training.id)
-    redirect_to training_path(@training)
-  end 
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_training
       @training = Training.find(params[:id])
     end
-
-    # def set_current_training
-    #   @training = Training.find(params[:training_id])
-      
-    # end
 
     def set_sports
       @sports = Training.sports.map { |sport, id| [sport, sport] }
@@ -115,6 +93,6 @@ class TrainingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def training_params
-      params.require(:training).permit(:name, :date, :sport, :level, :active, :place_id, images: []) #:user_id, :place_id)
+      params.require(:training).permit(:name, :date, :sport, :level, :active, :place_id, :rating, images: []) #:user_id, :place_id)
     end
 end

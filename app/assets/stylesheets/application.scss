@@ -25,7 +25,7 @@
 body {
   color: #bd3e64;
   text-decoration: none;
-  background: linear-gradient(to bottom, #ee890d, #dbccaf);
+  background: #dbccaf;
   background-image: url("background.png");
   background-repeat: no-repeat;
   font-size: 16px;
@@ -55,8 +55,14 @@ hr {
   width: 100%;
 }
 
+.img {
+  width: 100%;
+}
 /* navigation */
-
+.navbar {
+  background-color: #705e69;
+  width: 100%;
+}
 .nav-main {
   font-size: 17px;
   display: flex;
@@ -94,7 +100,7 @@ hr {
 }
 
 .nav-logo-btn {
-  background-image: url("logo.png");
+  background-image: url("partners.png");
 }
 /* Responsive Button */
 .menu-btn {
@@ -285,6 +291,7 @@ hr {
 .icon1 a {
   background-color: #ffffff;
   width: 100%;
+  border-radius: 0.5rem;
 }
 
 .icon1 a:hover {
@@ -299,6 +306,7 @@ hr {
 .icon2 a {
   background-color: #ffffff;
   width: 100%;
+  border-radius: 0.5rem;
 }
 
 .icon2 a:hover {
@@ -313,6 +321,7 @@ hr {
 .icon3 a {
   background-color: #ffffff;
   width: 100%;
+  border-radius: 0.5rem;
 }
 
 .icon3 a:hover {
@@ -359,8 +368,14 @@ hr {
 /* Links */
 .footer-links {
   background: #252023;
-  color: #616161;
-  font-size: 0.6rem;
+  color: #cca1a1;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.footer-links h5 {
+  background: #252023;
+  color: #17d48c;
 }
 
 .footer-container {
@@ -373,7 +388,15 @@ hr {
 
 .footer {
   background: #705e69;
-  color: #616161;
+  color: #17d48c;
+  font-size: 12px;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.footer h6 {
+  background: #705e69;
+  color: #17d48c;
   font-size: 12px;
   padding: 20px 0;
   text-align: center;
@@ -471,7 +494,7 @@ hr {
 .training {
   width: 100%;
   height: 100px;
-  /*opacity: 0.5;*/
+  opacity: 0.5;
   /*background: url("showcase2.jpg") no-repeat center center/cover;*/
   display: flex;
   flex-direction: column;
@@ -481,6 +504,7 @@ hr {
   padding-bottom: 50px;
   margin: 10px;
   color: #bd3e64;
+  border-radius: 12px;
 }
 
 /* MAP */
@@ -488,7 +512,7 @@ hr {
   height: 180px;
 }
 
-/* CACO */
+/* card */
 
 .custom-shadow {
   box-shadow: 1px 1px 26px 3px rgba(80, 80, 80, 0.15);
@@ -635,7 +659,7 @@ input#file-upload-button {
 
 /* Sidebar Perfil Usuario */
 :root {
-  --primary: #111b54;
+  --primary: #11544b;
   --light: #ffffff;
   --grey: #efefef;
 }
@@ -671,6 +695,7 @@ a:hover {
 
 #sidebar-container {
   min-height: 100vh;
+  border-radius: 0.5rem;
 }
 
 #sidebar-container .logo {

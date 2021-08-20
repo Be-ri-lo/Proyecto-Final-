@@ -1,0 +1,10 @@
+<%= content_tag :tr, id: dom_id(user) do %>
+  <td><%= user.name %></td>
+  <td>
+    <%= link_to 'Add friend', [:new, :partner, id: user], remote: true unless current_user.has_partner?(user) %>
+    <%= link_to 'Add friend', new_partner_path(id: user), remote: true %>
+    <%= link_to 'Accept Request', [:partners, id: user], method: :post, remote: true if current_user.requested_friends_with?(user) %>
+    <%= link_to 'Remove Request', [:partner, id: user], method: :delete, remote: true if current_user.pending_friends_with?(user) %>
+    <%= link_to 'Remove friend', [:partner, id: user], method: :delete, remote: true if current_user.friends_with?(user) %>
+  </td>
+<% end %>

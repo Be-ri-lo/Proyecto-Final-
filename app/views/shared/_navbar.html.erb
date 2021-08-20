@@ -1,8 +1,8 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-light  bg-gradient">
+<nav class="navbar sticky-top navbar-expand-lg m-0 p-0">
   <div class="container">
     <div class="col-3 my-auto py-2" >
       <a href="#scrollspyHeading1" class="logo-btn" role="button">
-        <%= image_tag "logo.png", alt: "", width: "30", height: "24" %>
+        <%= image_tag "part.png", alt: "", width: "100", height: "80" %>
       </a>
     </div>
 
@@ -57,7 +57,6 @@
             <% if user_signed_in? %>
                 <li><a class="dropdown-item" href="#"><%= link_to 'Perfil', users_path%></a></li>
                 <li><a class="dropdown-item" href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
-                <li><a class="dropdown-item" href="#"><%= link_to 'Notificaciones', new_partner_path%></a></li>
                 <li><a class="dropdown-item" href="#"><%= link_to 'Trainings', trainings_path %></a></li>
                 <li><a class="dropdown-item" href="#"><%= link_to 'Crear entrenamiento', new_training_path %></a></li>
                 <li><a class="dropdown-item" href="#"><%= link_to 'Buscar entrenamiento', places_path %></a></li>

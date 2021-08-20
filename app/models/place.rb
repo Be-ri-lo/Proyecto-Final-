@@ -4,6 +4,9 @@ class Place < ApplicationRecord
     has_many :trainings
 
     scope :active, ->{ where(active: true) }
+    
+    geocoded_by :location
+    after_validation :geocode, if: :location_changed?
 
     def to_s
         self.location    

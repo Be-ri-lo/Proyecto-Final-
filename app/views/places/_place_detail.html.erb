@@ -1,6 +1,8 @@
 <td><%=  place.country %></td>
 <td><%=  place.city %></td>
 <td><%=  place.location %></td>
+<%# <td><%=  place.latitude %>
+<%# <td><%=  place.longitude %>
 <td><%= link_to 'Show', place, remote: true%></td>
 <td><%= link_to 'Edit', edit_place_path(place), remote: true %></td>
 <td><%= link_to 'Destroy', place, method: :delete, data: { remote: true, confirm: 'Are you sure?' } %></td>

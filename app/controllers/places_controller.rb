@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
   # GET /places or /places.json
   def index
     # @places = Place.all #.active scope
-    # @place = Place.new
+    @place = Place.new
     # Searchkick
     search = params[:location].present? ? params[:location] : nil
       @places = if search
@@ -34,9 +34,10 @@ class PlacesController < ApplicationController
   
   # GET /places/1/edit
   def edit
-    respond_to do |format|
-      format.js
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to @place }
+    #   format.js
+    # end
   end
 
   # POST /places or /places.json
@@ -90,6 +91,6 @@ class PlacesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def place_params
-      params.require(:place).permit(:country, :city, :location, :active)
+      params.require(:place).permit(:country, :city, :location, :latitude, :longitude, :active)
     end
 end

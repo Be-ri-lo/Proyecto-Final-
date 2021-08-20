@@ -14,6 +14,7 @@ class Training < ApplicationRecord
   enum level: [:Básico, :Intermedia, :Avanzada]
 
   #validates :date_cannot_be_in_the_past
+  audited only: :rating, on: [:update, :destroy]
   after_update :average_stars
 
   # def date_cannot_be_in_the_past
@@ -27,18 +28,21 @@ class Training < ApplicationRecord
   end
 
   #Pides solicitud de entrenamiento (partner)
-  def apply_training
-     
+  
+  def suggest_partners
+      current_partners_id = self.partners.map{|f| f.partner_id}
+      current_partners_id.push(self.id)
+      @suggest = User.where.not(id: current_partners_id)
   end
 
-  def total_partners
-    self.partners.count
+  def partner_list
+    users = self.partners.map{|f| f.partner_id}
+    users.push(self.id)
+    return users
   end
 
-  def suggest_friends
-    current_friends_id = self.friends.map{|f| f.friend_id}
-    current_friends_id.push(self.id)
-    @suggest = User.where.not(id: current_friends_id)
+  def follow?(user)
+    return (partners.where('partner_id=?', user).count == 1)
   end
 
   # Si el entrenamiento terminó, puedes evaluar
@@ -47,9 +51,10 @@ class Training < ApplicationRecord
   end
 
   #Entregar evaluacion
+
   def average_stars
-    n = self.rateds.pluck(:rateds)
-    x = self.rateds.all.count
+    n = self.revisions.pluck(:rating)
+    x = self.audits.all.count
     if x > 0 && !n.empty?
       n.sum/x
     else
@@ -62,17 +67,6 @@ class Training < ApplicationRecord
     !!self.rateds.find{|rate| rate.user_id == user.id}
   end
 
-  # def search_data
-  #   {
-  #        country: country,
-  #        city: city,
-  #        location: location, null: false,
-  #        sport: sport, null: false,
-  #        level: level, null: false,
-  #        date: date
-  #   }
-  # end
-
-  
-
+  # Kaminari
+  paginates_per 15
 end

@@ -33,3 +33,5 @@ document.addEventListener("submit", function (e) {
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+import "controllers"

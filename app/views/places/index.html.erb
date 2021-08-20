@@ -1,36 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Places</h1>
-
-
-
-<%# <%= render 'form', place: @place %>
-
-<div id="place_detail"></div>
+<h1>Lugares</h1>
 
 <table id="places">
   <thead>
     <tr>
-      <th>Country</th>
-      <th>City</th>
-      <th>Location</th>
+      <th>País</th>
+      <th>Ciudad</th>
+      <th>Dirección</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+   <tbody>
     <% @places.each do |place| %>
-        <%= render 'place', place: place %>
+      <tr>
+        <td><%= place.country %></td>
+        <td><%= place.city %></td>
+        <td><%= place.location %></td>
+        <td><%= place.latitude %></td>
+        <td><%= place.longitude %></td>
+        <td><%= link_to 'Show', place %></td>
+        <td><%= link_to 'Edit', edit_place_path(place) %></td>
+        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
     <% end %>
+
+<%# <%= render 'form', place: @place %> 
+
   </tbody>
 </table>
 
- <%# <ul id="places">
-<%= render @place %>
-<%# </ul> %>
-
-
-
-
 <br>
 
+<%= link_to 'New Place', new_place_path %>

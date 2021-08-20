@@ -1,9 +1,7 @@
 Rails.application.routes.draw do  
-  resources :trainings do
-    resources :rateds, except: :index
-  end
+  resources :trainings
   
-  resources :partners
+  resources :partners, only: [:new, :create, :destroy]
   
   resources :places do
     resources :trainings

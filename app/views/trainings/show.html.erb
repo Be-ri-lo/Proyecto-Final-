@@ -1,12 +1,12 @@
-<div class="row">
+<div class="row p-5 mt-5">
   <!--izq-->
-  <div class="col-12 col-md-6 bg-primary ">
+  <div class="col-12 col-md-6  ">
     <div class="card mb-3 mx-auto" style="max-width: 540px;">
       <div class="row g-0">
-        <div class="col-12">
+        <div class=" img col-12">
         <% if @training.images.any? %>
           <% @training.images.each do |image| %>
-          <%= image_tag image.variant(resize: "100x100").processed %>
+          <%= image_tag image.variant(resize: "535x535").processed %>
           <% end %>
         <% end %>
         </div>
@@ -24,7 +24,7 @@
           <hr>
           <div>
           <!--Evaluar-->
-            <div class="">
+            <div class="m-3">
               <% if @training.concluded? && @user != current_user %> 
                 <%= form_with(model: @training) do |form| %>
                   <div class="field">
@@ -45,7 +45,7 @@
                   </ul>
                 </div>              
               <% end %>
-              Ranking:<br>
+              <br>
                 <%= @training.average_stars.times do %>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                     <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
@@ -67,7 +67,25 @@
   </div>
     
   <!--der-->
-  <div class="col-12 col-md-6 bg-secondary">
+
+  <div class="row">
+    <div id="map" style="width: 100%; height: 400px"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js/&key=AIzaSyDMpNrDZDtAqlja950Cee2DZtV_sa4I6KY"></script>
+    <script>
+      function initialize() {
+        var show = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
+        var map = new google.maps.Map(document.getElementById("map"), {
+          center: location,
+          zoom: 14
+        });
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  
+  </div>
+  <%# <div class="col-12 col-md-6 bg-secondary">
     <img src="https://maps.google.com/maps/api/staticmap?center=Santiago,IL&zoom=8&size=512x512&maptype=roadmap&sensor=false" alt="Static Map of Chicago, Illinois">
   </div>
 
@@ -92,7 +110,7 @@
                     .catch((error) => console.error(error))
                 </script>
 
-</div>
+</div> %>
 
 <%= link_to 'Back', trainings_path %>
 

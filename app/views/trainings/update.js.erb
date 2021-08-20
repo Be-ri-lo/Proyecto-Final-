@@ -1,0 +1,5 @@
+var tr = document.querySelector('tr[data-id="<%= @training.id %>"]')
+tr.innerHTML = '<%= j render "training_detail", training: @training %>'
+
+var training_detail = document.querySelector('#training_detail')
+training_detail.innerHTML = ''

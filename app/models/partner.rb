@@ -1,6 +1,6 @@
 class Partner < ApplicationRecord
   belongs_to :user
-  belongs_to :training
+  belongs_to :friend, class_name: 'User'
 
-  enum state: [:undefined, :rejected, :accepted]
+  enum state: [:pending, :requested, :accepted, :blocked]
 end

@@ -66,3 +66,6 @@ gem 'activeadmin'
 #gem 'hhparty'
 gem 'chartkick'
 gem 'groupdate'
+gem "audited", "~> 4.9"
+gem 'kaminari'
+gem 'geocoder', '1.4'

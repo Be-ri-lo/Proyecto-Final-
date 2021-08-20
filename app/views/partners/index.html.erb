@@ -6,6 +6,8 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Usuario</th>
+      <th>Entrenamiento</th>
       <th>State</th>
       <th colspan="3"></th>
     </tr>
@@ -15,6 +17,8 @@
     <% @partners.each do |partner| %>
       <tr>
         <td><%= partner.user %></td>
+        <td><%= partner.user_id %></td>
+        <td><%= partner.training_id %></td>
         <td><%= partner.state %></td>
         <td><%= link_to 'Show', partner %></td>
         <td><%= link_to 'Edit', edit_partner_path(partner) %></td>
