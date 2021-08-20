@@ -41,7 +41,7 @@ end
 
     10.times do
         training = user.trainings.create!(
-            image: Training.images.file.attachment(File.open("app/assets/images/deportes"))
+            #image: images_names.sample
             name: Faker::Team.sport, 
             sport: Training.sports.keys.sample, 
             level: Training.levels.keys.sample,
