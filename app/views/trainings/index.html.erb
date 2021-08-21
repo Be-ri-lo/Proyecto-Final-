@@ -31,11 +31,9 @@
                 <%= link_to 'Mirar', training %>
                  <!--Este link es para pedir solicitud de entrenamiento--> 
                 <tbody class="text-center">
-                    <% if user_signed_in? %>
+                    <% if user_signed_in? && training.concluded? %>
                          <%# <% if current_user.partners.pluck(:partner_id).include?(training.user.id) && user.id == training.user.id %>  
                         <%= link_to 'Entrenar', users_path(@user) %> <!--que vaya al dashboard del usuario dueño del entrenamiento-->      
-                    <% else %>
-                        <%= "¡Conectate para entrenar!" %>
                     <% end %>
                 </tbody>
               </a>
